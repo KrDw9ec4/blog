@@ -33,3 +33,7 @@ pnpm-debug.log*
 !.yarn/sdks
 !.yarn/versions
 .pnp.*
+
+draft_template.md
+.stignore
+.stfolder

@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @layer base {
+
   :root,
   html[data-theme="light"] {
     --color-fill: 251, 254, 251;
@@ -12,14 +13,16 @@
     --color-card-muted: 205, 205, 205;
     --color-border: 236, 233, 233;
   }
+
   html[data-theme="dark"] {
-    --color-fill: 33, 39, 55;
-    --color-text-base: 234, 237, 243;
-    --color-accent: 255, 107, 1;
-    --color-card: 52, 63, 96;
-    --color-card-muted: 138, 51, 2;
-    --color-border: 171, 75, 8;
+    --color-fill: 18, 18, 18;
+    --color-text-base: 245, 245, 245;
+    --color-accent: 225, 74, 57;
+    --color-card: 34, 34, 34;
+    --color-card-muted: 58, 58, 58;
+    --color-border: 80, 80, 80;
   }
+
   #sun-svg,
   html[data-theme="dark"] #moon-svg {
     display: none;
@@ -29,7 +32,7 @@
     display: block;
   }
   body {
-    @apply flex min-h-[100svh] flex-col bg-skin-fill font-mono text-skin-base 
+    @apply flex min-h-[100svh] flex-col bg-skin-fill font-sans text-skin-base 
     selection:bg-skin-accent selection:bg-opacity-70 selection:text-skin-inverted;
   }
   section,
@@ -122,6 +125,59 @@
 
   pre > code {
     white-space: pre;
+  }
+
+  /* 表格基础样式 */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    /* 合并表格边框，去掉双线 */
+  }
+
+  /* 表头和单元格的基础样式 */
+  thead,
+  tbody,
+  tr,
+  th,
+  td {
+    white-space: nowrap;
+    padding: 8px;
+    /* 增加单元格内边距，改善视觉效果 */
+    border: 1px solid #ddd;
+    /* 添加边框以区分单元格 */
+  }
+
+  /* 小屏幕设备上的样式 */
+  @media (max-width: 768px) {
+    table {
+      display: block;
+      overflow-x: auto;
+    }
+
+    thead,
+    tbody,
+    tr,
+    th,
+    td {
+      white-space: nowrap;
+    }
+  }
+
+  /* 大屏幕设备上的样式 */
+  @media (min-width: 769px) {
+    table {
+      table-layout: auto;
+      /* 表格布局设置为自动，确保表格宽度自适应 */
+    }
+
+    thead,
+    tbody,
+    tr,
+    th,
+    td {
+      white-space: normal;
+      /* 允许内容换行，避免内容太长撑开表格 */
+    }
   }
 }
 

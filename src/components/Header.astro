@@ -57,17 +57,17 @@ const { activeNav } = Astro.props;
         <ul id="menu-items" class="display-none sm:flex">
           <li>
             <a href="/posts/" class={activeNav === "posts" ? "active" : ""}>
-              Posts
+              归档
             </a>
           </li>
           <li>
             <a href="/tags/" class={activeNav === "tags" ? "active" : ""}>
-              Tags
+              标签
             </a>
           </li>
           <li>
             <a href="/about/" class={activeNav === "about" ? "active" : ""}>
-              About
+              关于
             </a>
           </li>
           <li>
@@ -77,7 +77,7 @@ const { activeNav } = Astro.props;
                 activeNav === "search" ? "active" : ""
               } flex`}
               ariaLabel="search"
-              title="Search"
+              title="搜索"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -95,7 +95,7 @@ const { activeNav } = Astro.props;
                 <button
                   id="theme-btn"
                   class="focus-outline"
-                  title="Toggles light & dark"
+                  title="切换主题"
                   aria-label="auto"
                   aria-live="polite"
                 >
