@@ -32,13 +32,13 @@ export const SOCIALS: SocialObjects = [
   },
   {
     name: "Mail",
-    href: "comment@krdw.me",
+    href: "comment@krdw.dev",
     linkTitle: `发送邮件到 ${SITE.title}`,
-    active: true,
+    active: false,
   },
   {
     name: "WeChat",
-    href: "https://krdw.dev/wechat",
+    href: "https://t.kr4.in/wechat",
     linkTitle: `The Newest Posts on WeChat`,
     active: true,
   },

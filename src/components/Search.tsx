@@ -22,12 +22,18 @@ interface SearchResult {
 export default function SearchBar({ searchList }: Props) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [inputVal, setInputVal] = useState("");
-  const [searchResults, setSearchResults] = useState<SearchResult[] | null>(
-    null
-  );
+  const [searchResults, setSearchResults] = useState<SearchResult[] | null>(null);
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
     setInputVal(e.currentTarget.value);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      // Perform Google search with the site query
+      const googleSearchUrl = `https://www.google.com/search?q=site:blog.krdw.site ${inputVal}`;
+      window.location.href = googleSearchUrl;
+    }
   };
 
   const fuse = useMemo(
@@ -92,6 +98,7 @@ export default function SearchBar({ searchList }: Props) {
           name="search"
           value={inputVal}
           onChange={handleChange}
+          onKeyDown={handleKeyDown}
           autoComplete="off"
           // autoFocus
           ref={inputRef}
@@ -99,13 +106,16 @@ export default function SearchBar({ searchList }: Props) {
       </label>
 
       {inputVal.length > 1 && (
-        <div className="mt-8">
-          Found {searchResults?.length}
-          {searchResults?.length && searchResults?.length === 1
-            ? " result"
-            : " results"}{" "}
-          for '{inputVal}'
-        </div>
+        <div className="mt-8 text-center">
+        <span>
+          <a href={`https://www.google.com/search?q=site:blog.krdw.site ${inputVal}`}>使用 Google 搜索 “{inputVal}”</a>
+        </span>
+        &nbsp;|&nbsp;
+        <span>
+          <a href={`https://bing.com/search?q=site:blog.krdw.site ${inputVal}`}>使用 Bing 搜索 “{inputVal}”</a>
+        </span>
+      </div>
+      
       )}
 
       <ul>

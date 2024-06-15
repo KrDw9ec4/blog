@@ -23,7 +23,7 @@ const searchList = sortedPosts.map(({ data, slug }) => ({
 
 <Layout title={`搜索 | ${SITE.title}`}>
   <Header activeNav="search" />
-  <Main pageTitle="搜索" pageDesc="搜点什么 ...">
+  <Main pageTitle="搜索" pageDesc="博客内置搜索仅支持标题和描述，无法搜索正文。推荐使用 Google 进行关键词搜索，Bing 收录目前存在问题。">
     <SearchBar client:load searchList={searchList} />
   </Main>
   <Footer />
