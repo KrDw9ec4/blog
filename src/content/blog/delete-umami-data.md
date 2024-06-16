@@ -1,7 +1,7 @@
 ---
 author: KrDw
 pubDatetime: 2024-06-16T12:19:06.000+08:00
-modDatetime: 2024-06-16T13:06:08.000+08:00
+modDatetime: 2024-06-16T19:01:28.000+08:00
 title: 删除 Umami 无用数据
 featured: false
 draft: false
@@ -57,7 +57,7 @@ psql -U umami -d umami
 
 使用 `\dt` 查看数据库中的所有表，再一一查看表数据得知统计数据存储在 **website_event** 表中。
 
-*如果不会写 SQL 语句，请面向 ChatGPT 操作。*
+*如果不会写 SQL 语句，可以面向 ChatGPT 操作。*
 
 比如我这里就需要统计网页路径为 search 和来源域名是 100.100.1.1 的数据数量，你可以**打开 Umami Dashboard 查看网站所有时间段的数据量，确认数字是否正确**。
 
