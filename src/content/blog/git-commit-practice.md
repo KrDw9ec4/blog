@@ -17,7 +17,7 @@ description: ""
 
 每一个提交信息（commit message）通常由**头部（header）**，**主体（body）**，和**尾部（footer）**组成。
 
-```git
+```
 <header>
 <BLANK LINE>
 <body>

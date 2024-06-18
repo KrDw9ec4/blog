@@ -39,7 +39,7 @@ flomo 为了长期维护，功能开发十分克制，这是优点，对我来�
 
 在新建一个 docker/ 文件夹用于存储各种 docker 服务的数据，再在里面新建一个 memos/ 文件夹专门用于 memos，在 memos/ 文件夹下新建一个 `docker-compose.yaml` 文件，最后的文件结构如下：
 
-```tree
+```
 docker/
 └── memos/
     └── docker-compose.yaml

@@ -33,7 +33,7 @@ export default function Datetime({
           更新于
         </span>
       ) : (
-        <span className="sr-only">Published:</span>
+        <span className="sr-only">发布于</span>
       )}
       <span className={`${size === "sm" ? "text-sm" : "text-base"}`}>
         <FormattedDatetime
@@ -50,20 +50,24 @@ const FormattedDatetime = ({ pubDatetime, modDatetime }: DatetimesProps) => {
     modDatetime && modDatetime > pubDatetime ? modDatetime : pubDatetime
   );
 
-  const date = myDatetime.toLocaleDateString(LOCALE.langTag, {
+  const bjDatetime = new Date(
+    myDatetime.toLocaleString("en-US", { timeZone: "Asia/Shanghai" })
+  );
+
+  const date = bjDatetime.toLocaleDateString(LOCALE.langTag, {
     year: "numeric",
     month: "short",
     day: "numeric",
   });
 
-  const time = myDatetime.toLocaleTimeString(LOCALE.langTag, {
+  const time = bjDatetime.toLocaleTimeString(LOCALE.langTag, {
     hour: "2-digit",
     minute: "2-digit",
   });
 
   return (
     <>
-      <time dateTime={myDatetime.toISOString()}>{date}</time>
+      <time dateTime={bjDatetime.toISOString()}>{date}</time>
       <span aria-hidden="true"> | </span>
       <span className="sr-only">&nbsp;at&nbsp;</span>
       <span className="text-nowrap">{time}</span>

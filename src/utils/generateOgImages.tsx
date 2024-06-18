@@ -7,13 +7,13 @@ import siteOgImage from "./og-templates/site";
 const fetchFonts = async () => {
   // Regular Font
   const fontFileRegular = await fetch(
-    "https://www.1001fonts.com/download/font/ibm-plex-mono.regular.ttf"
+    "https://g.kr4.in/https://github.com/KrDw9ec4/blog/releases/download/source-han-sans/SourceHanSansCN-Regular.otf"
   );
   const fontRegular: ArrayBuffer = await fontFileRegular.arrayBuffer();
 
   // Bold Font
   const fontFileBold = await fetch(
-    "https://www.1001fonts.com/download/font/ibm-plex-mono.bold.ttf"
+    "https://g.kr4.in/https://github.com/KrDw9ec4/blog/releases/download/source-han-sans/SourceHanSansCN-Bold.otf"
   );
   const fontBold: ArrayBuffer = await fontFileBold.arrayBuffer();
 
