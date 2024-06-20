@@ -14,7 +14,7 @@ description: "在云服务器使用 docker compose 快速部署 memos。"
 
 memos 项目地址：[usememos/memos](https://github.com/usememos/memos)
 
-![memos项目首页](https://img.kr4.in/2024/05/picgo_9abc564351e582e4de081ee9f6dc6d94.png)
+![memos项目首页](https://img.k1r.in/2024/05/picgo_9abc564351e582e4de081ee9f6dc6d94.png)
 
 flomo 为了长期维护，功能开发十分克制，这是优点，对我来说也是缺点，我对他们**未来支持 Markdown 的常用语法持悲观态度**。还有就是自己数据是在别人的服务器上，先不论隐私安全问题，光是历史数据（其他平台的记录）导入基本都做不到。
 
@@ -89,6 +89,6 @@ sudo docker compose up -d
 
 如果你是云服务器部署，那么在访问前你要先在云服务器的控制台放行 `5230` 端口，添加这么一行记录即可。
 
-![放行端口](https://img.kr4.in/2024/05/picgo_363c72693eb489c7170d9f82df056c77.png)
+![放行端口](https://img.k1r.in/2024/05/picgo_363c72693eb489c7170d9f82df056c77.png)
 
 接下来在地址栏键入 `xxx.xxx.xxx.xxx:5230` 即可访问部署的 memos 服务（xxx.xxx.xxx.xxx 换成云服务器的公网 IP）。

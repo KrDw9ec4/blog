@@ -14,7 +14,7 @@ description: "删除 Umami 因本地调试产生的无用数据。数据无价�
 
 然而，这带来了一个问题：我在本地调试博客时，Umami 无法过滤掉本地数据，导致统计数据中包含了大量我自己调试时的数据。特别是昨天我在修改博客的搜索功能（目前已暂时下线）时，由于代码问题，导致 `/search/` 页面访问量暴增。
 
-![Umami统计到的错误数据](https://img.kr4.in/2024/06/picgo_50f892f7c2dc93be111d846a60eb7381.png)
+![Umami统计到的错误数据](https://img.k1r.in/2024/06/picgo_50f892f7c2dc93be111d846a60eb7381.png)
 
 参考官方文档 [Tracker configuration](https://umami.is/docs/tracker-configuration) 后，我了解到可以通过在追踪器代码中添加 `data-domains` 属性来解决这一问题，从而避免统计到本地调试的数据。
 
@@ -23,7 +23,7 @@ description: "删除 Umami 因本地调试产生的无用数据。数据无价�
   defer
   src="https://xxxxxxxxxxxxx"
   data-website-id="xxxxxxxxxxxxxxxxxxxxxx"
-  data-domains="blog.krdw.site,b.kr4.in,krdw.pages.dev"
+  data-domains="blog.krdw.site,krdw.pages.dev"
 ></script>
 ```
 

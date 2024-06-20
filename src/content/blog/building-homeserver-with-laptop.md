@@ -11,7 +11,7 @@ tags:
 description: "笔记本安装 Ubuntu Server 系统，路由器支持 IPv6 实现公网 IPv6 访问，宽带有公网 IPv4 或者有一台云服务器实现公网 IPv4 访问，最终实现通过 IPv4 + IPv6 双栈访问服务器，安装 docker 来快速部署和方便管理服务。"
 ---
 
-![neofetch系统信息](https://img.kr4.in/2024/05/picgo_5381da4949d117c29bf688c8175108d7.png)
+![neofetch系统信息](https://img.k1r.in/2024/05/picgo_5381da4949d117c29bf688c8175108d7.png)
 
 最近用一台家里的老旧笔记本搭了一台本地服务器，体验下来还是不错的，于是写一篇博客记录一下。
 
@@ -50,7 +50,7 @@ Ubuntu Server ISO 镜像文件下载地址：https://ubuntu.com/download/server
 
 将 U 盘插入电脑，打开 Rufus，选择下载好的 Ubuntu Server 镜像，分区类型选择“MBR”，文件系统选择“NTFS”，点击“开始”，等待制作完成后拔出 U 盘。
 
-![rufus制作启动盘](https://img.kr4.in/2024/05/picgo_f64268e24a839645c67ab1b90d44f6ff.png)
+![rufus制作启动盘](https://img.k1r.in/2024/05/picgo_f64268e24a839645c67ab1b90d44f6ff.png)
 
 **(2) 从启动盘引导**
 

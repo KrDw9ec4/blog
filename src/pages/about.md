@@ -17,22 +17,22 @@ title: "关于"
 
 <div style="display: flex; flex-wrap: wrap;">
   <div style="flex: 1 1 50%; padding: 5px;">
-    <img src="https://img.kr4.in/2024/05/picgo_5c6d1caeee1e6fd2bdfac68e1aa9a1e2.png" alt="原博客首页" style="width: 100%;">
+    <img src="https://img.k1r.in/2024/05/picgo_5c6d1caeee1e6fd2bdfac68e1aa9a1e2.png" alt="原博客首页" style="width: 100%;">
   </div>
   <div style="flex: 1 1 50%; padding: 5px;">
-    <img src="https://img.kr4.in/2024/05/picgo_99ae8351442d408b13718266311001cf.png" alt="原博客文章页" style="width: 100%;">
+    <img src="https://img.k1r.in/2024/05/picgo_99ae8351442d408b13718266311001cf.png" alt="原博客文章页" style="width: 100%;">
   </div>
   <div style="flex: 1 1 50%; padding: 5px;">
-    <img src="https://img.kr4.in/2024/05/picgo_8db2fc022160cbc12ccdc3f6301c7f67.png" alt="现博客首页" style="width: 100%;">
+    <img src="https://img.k1r.in/2024/05/picgo_8db2fc022160cbc12ccdc3f6301c7f67.png" alt="现博客首页" style="width: 100%;">
   </div>
   <div style="flex: 1 1 50%; padding: 5px;">
-    <img src="https://img.kr4.in/2024/05/picgo_0c60560c3ed79c04b8c0c961874f14e3.png" alt="现博客文章页" style="width: 100%;">
+    <img src="https://img.k1r.in/2024/05/picgo_0c60560c3ed79c04b8c0c961874f14e3.png" alt="现博客文章页" style="width: 100%;">
   </div>
 </div>
 
 ### 05-15
 
-添加 [sitemap](https://blog.krdw.site/sitemap-0.xml)、使用 [Umami](https://t.kr4.in/5kh297) 进行统计。
+添加 [sitemap](https://blog.krdw.site/sitemap-0.xml)、使用 [Umami](https://t.k1r.in/5kh297) 进行统计。
 
 ### 02-02
 

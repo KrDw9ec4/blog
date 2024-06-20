@@ -57,9 +57,9 @@ CloudFlare Tunnel 是 Zero Trust 下属的一个项目，Zero Trust 是可以免
 - 同时**_支持 v6 和 v4，IPv6 也能像 DDNS 一样直连_**，IPv4 会走香港中继服务器中转，速度勉强能用。
 - 另外，值得一提的是，**_当两台在传统局域网下时，会直接走传统局域网的连接_**。
 
-![tailscale连接情况1](https://img.kr4.in/2024/05/picgo_44003e27bc00a6094f3a1ba615efdab5.png)
+![tailscale连接情况1](https://img.k1r.in/2024/05/picgo_44003e27bc00a6094f3a1ba615efdab5.png)
 
-![tailscale连接情况2](https://img.kr4.in/2024/05/picgo_51c10841eb748171487e70772112ee4f.png)
+![tailscale连接情况2](https://img.k1r.in/2024/05/picgo_51c10841eb748171487e70772112ee4f.png)
 
 - 异地组网的好处就是从局域网访问，**_完全不用对外暴露端口，安全性很高_**。
 - 我使用 Tailscale 最大的阻力就是它是一个 VPN 服务，这意味着*在安卓端与科学软件冲突*，而这又是我所必需的。

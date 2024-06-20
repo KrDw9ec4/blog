@@ -14,7 +14,7 @@ description: "从 RSSHub 和 WeWeRSS 获取 RSS 订阅源链接，部分使用 r
 
 对于 RSS 的介绍本文不赘述，你需要知道 RSS 是能将分散孤立的平台的信息聚合到一起，下面我将带你搭建一套流程实现 RSS 信息流，大致思路：**从 RSSHub 和 WeWeRSS 获取 RSS 订阅源链接，部分使用 rss-proxy 进行代理，使用 FreshRSS 作为 RSS 服务端，安卓使用 ReadYou 进行阅读。**
 
-![本博客流程图](https://img.kr4.in/2024/05/picgo_b6f87ede9ec90db53433eb026bc6c2dc.svg)
+![本博客流程图](https://img.k1r.in/2024/05/picgo_b6f87ede9ec90db53433eb026bc6c2dc.svg)
 
 下面这个表格是这一套流程**大致的空间和内存占用**，如果只是部署这一套流程，那么 1G 内存的服务器就够用了。
 
@@ -46,7 +46,7 @@ description: "从 RSSHub 和 WeWeRSS 获取 RSS 订阅源链接，部分使用 r
 
 #### RSSHub
 
-![RSSHUB项目首页](https://img.kr4.in/2024/05/picgo_fb8a8a5f300e7a74f65b6fb5282cf80f.png)
+![RSSHUB项目首页](https://img.k1r.in/2024/05/picgo_fb8a8a5f300e7a74f65b6fb5282cf80f.png)
 
 > **RSSHub**: https://docs.rsshub.app/zh/
 >
@@ -110,7 +110,7 @@ docker compose up -d # docker compose 部署服务
 
 放行 RSSHub 的端口 `1200`，你就可以在浏览器输入 `http://<公网IP>:1200` 访问到你的 RSSHub 实例了。
 
-![成功部署RSSHUB](https://img.kr4.in/2024/05/picgo_79304257a317b95e2156b30fac627acd.png)
+![成功部署RSSHUB](https://img.k1r.in/2024/05/picgo_79304257a317b95e2156b30fac627acd.png)
 
 其实到这一步已经成功自部署 RSSHub 了，至于配置反向代理使用域名访问这里（和后文）就不讲了，不是必需的，一是域名解析到国内云服务器需要备案（备案要等大概十来天），二是网上很多相关教程了，小白建议用 Caddy（配置简单，占用小，但没有图形化界面）/ Nginx Proxy Manger（docker 部署，占用较大，有 webui）。
 

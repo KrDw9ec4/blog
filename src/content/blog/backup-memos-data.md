@@ -19,7 +19,7 @@ description: "创建 Bash 脚本，使用 crontab 创建定期任务，定期通
 
 其中要给 **OSS 访问桶的权限**：
 
-![阿里云授权过程](https://img.kr4.in/2024/05/picgo_ccef7c2c3c6674a3d95b35f344ceb33d.png)
+![阿里云授权过程](https://img.k1r.in/2024/05/picgo_ccef7c2c3c6674a3d95b35f344ceb33d.png)
 
 ### (2) 安装并配置 rclone
 

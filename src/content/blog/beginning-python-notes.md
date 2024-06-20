@@ -10,7 +10,7 @@ tags:
 description: ""
 ---
 
-<center><img src="https://img.kr4.in/2024/05/picgo_247cb547c090d323a0ade28c424fe46d.png" width="135px" height="200px"> </center>
+<center><img src="https://img.k1r.in/2024/05/picgo_247cb547c090d323a0ade28c424fe46d.png" width="135px" height="200px"> </center>
 <center><font size=4>《Python基础教程（第3版）》</font></center>
 <center><font color='#6e6e6e' size=2>作者：MagnusLieHetland</font></center>
 <center><font color='#6e6e6e' size=2>译者：袁国忠</font></center>

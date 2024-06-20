@@ -28,11 +28,11 @@ memos 默认是采用 SQLite 数据库类型，我们可以使用 [DB Browser fo
 
 我们从云服务器将 `memos_prod.db` 文件下载到本地，使用 DB Browser for SQLite 打开数据库如下：
 
-![数据库表的说明](https://img.kr4.in/2024/05/picgo_bfa079ff23f00ac84788a06e52b3d3ed.png)
+![数据库表的说明](https://img.k1r.in/2024/05/picgo_bfa079ff23f00ac84788a06e52b3d3ed.png)
 
 右键 memo 表点击“浏览表”：
 
-![memo表的说明](https://img.kr4.in/2024/05/picgo_c37ff7c7bf5195039806a3d3c368e48e.png)
+![memo表的说明](https://img.k1r.in/2024/05/picgo_c37ff7c7bf5195039806a3d3c368e48e.png)
 
 #### (2) 将历史记录转换为 csv 文件
 

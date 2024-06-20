@@ -62,7 +62,7 @@ ssh example
 
 **(3) 使用 VS code 远程连接**
 
-![VScode界面](https://img.kr4.in/2024/05/picgo_b74bf600e373ff9da6da8b70d1721da5.png)
+![VScode界面](https://img.k1r.in/2024/05/picgo_b74bf600e373ff9da6da8b70d1721da5.png)
 
 其实你也可以使用 VS code 远程连接到服务器，这样就不必都在终端命令行操作了，但这种方式内存占用比较大，2G 内存基本会被占用 30%。
 
@@ -87,7 +87,7 @@ ssh example
 
 还有就是在命令行编辑纯文本文件，主要是 nano 和 vim，这里讲下 vim，vim 你可以理解为有很多模式，按 `Esc` 键相当于进入了一个“阅读模式”，在“阅读模式”按键盘不会输入，而是有相应的命令，但也不用去记，我自己也不会，**主要用的就是按 i 进入插入模式编辑，然后按 Esc 退出编辑，按 :wq 保存并退出**。
 
-![vim键位图](https://img.kr4.in/2024/05/picgo_acc327dfe0d5328c1ad102179c70b641.gif)
+![vim键位图](https://img.k1r.in/2024/05/picgo_acc327dfe0d5328c1ad102179c70b641.gif)
 
 ### 让新的设备能 SSH 连接到服务器
 

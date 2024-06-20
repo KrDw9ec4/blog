@@ -10,7 +10,7 @@ tags:
 description: ""
 ---
 
-<center><img src="https://img.kr4.in/2024/05/picgo_13b0396e180c1aaf4c548fb3d90a7e68.png" width="135px" height="200px"> </center>
+<center><img src="https://img.k1r.in/2024/05/picgo_13b0396e180c1aaf4c548fb3d90a7e68.png" width="135px" height="200px"> </center>
 <center><font size=4>《C Primer Plus（第6版）中文版》</font></center>
 <center><font color='#6e6e6e' size=2>作者：普拉达(StephenPrata)</font></center>
 <center><font color='#6e6e6e' size=2>译者：姜佑</font></center>
@@ -243,7 +243,7 @@ printf("%ld %ld %ld %ld\n", n1, n2, n3, n4);
 
 然后，控制转到 printf() 函数。**该函数根据转换说明（不是根据变量类型）从栈中读取值**。
 
-![参数传递入栈](https://img.kr4.in/2024/05/picgo_09e71a0384b396c98b8b9f95f4b2f3fd.png)
+![参数传递入栈](https://img.k1r.in/2024/05/picgo_09e71a0384b396c98b8b9f95f4b2f3fd.png)
 
 ---
 
@@ -446,7 +446,7 @@ input_is_good = (scanf("%ld", &num) == 1);
 
 ---
 
-![运算符优先级](https://img.kr4.in/2024/05/picgo_1dbbf2fbc787bf7793b176845c1ec5cc.png)
+![运算符优先级](https://img.k1r.in/2024/05/picgo_1dbbf2fbc787bf7793b176845c1ec5cc.png)
 
 > [!Note]
 >
