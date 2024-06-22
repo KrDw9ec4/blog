@@ -23,7 +23,7 @@ description: "删除 Umami 因本地调试产生的无用数据。数据无价�
   defer
   src="https://xxxxxxxxxxxxx"
   data-website-id="xxxxxxxxxxxxxxxxxxxxxx"
-  data-domains="k1r.in,krdw.pages.dev"
+  data-domains="k1r.in"
 ></script>
 ```
 

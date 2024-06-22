@@ -5,6 +5,10 @@ title: "关于"
 
 ## 2024 年
 
+### 06-22
+
+将博客地址逐渐迁移到 k1r.in。
+
 ### 06-15
 
 将博客部署到 [CloudFlare Pages](https://krdw.pages.dev/)，通过 CNAME 解析。
@@ -44,4 +48,4 @@ title: "关于"
 
 ### 01-31
 
-域名备案下来，正式上线博客，~~采用 hexo + butterfly~~，**同时部署在[服务器](https://k1r.in)**~~和 GitHub 上~~。
+域名备案下来，正式上线博客，~~采用 hexo + butterfly，同时部署在[服务器](https://k1r.in) 和 GitHub 上~~。
