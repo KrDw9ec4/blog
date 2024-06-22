@@ -127,7 +127,7 @@ description: "我的建议是先跟着廖雪峰的图文教程一步一步走一
    3. 否则，请右键-**属性** > 启动类型：自动。
 3. 如果以上办法没解决，那我也没辙。
 
-> 2024-02-02 更新：可以前往[配置 git 代理连接 GitHub](https://blog.krdw.site/posts/git-proxy/) 配置代理来解决网络问题。
+> 2024-02-02 更新：可以前往[配置 git 代理连接 GitHub](https://k1r.in/posts/git-proxy/) 配置代理来解决网络问题。
 
 ### git remote
 

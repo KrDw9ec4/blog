@@ -32,7 +32,7 @@ title: "关于"
 
 ### 05-15
 
-添加 [sitemap](https://blog.krdw.site/sitemap-0.xml)、使用 [Umami](https://t.k1r.in/5kh297) 进行统计。
+添加 [sitemap](https://k1r.in/sitemap-0.xml)、使用 [Umami](https://s.k1r.in/5kh297) 进行统计。
 
 ### 02-02
 
@@ -44,4 +44,4 @@ title: "关于"
 
 ### 01-31
 
-域名备案下来，正式上线博客，~~采用 hexo + butterfly~~，**同时部署在[服务器](https://blog.krdw.site)**~~和 GitHub 上~~。
+域名备案下来，正式上线博客，~~采用 hexo + butterfly~~，**同时部署在[服务器](https://k1r.in)**~~和 GitHub 上~~。

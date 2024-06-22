@@ -75,11 +75,11 @@ Ubuntu Server ISO 镜像文件下载地址：https://ubuntu.com/download/server
 
 等待安装完成后，你就拥有了一台本地服务器，一些有关服务器的杂项设置可以参考文末。
 
-> 如果你是第一次使用服务器，可以参考我这篇博客：[连接到服务器](https://blog.krdw.site/posts/connect-to-server/)
+> 如果你是第一次使用服务器，可以参考我这篇博客：[连接到服务器](https://k1r.in/posts/connect-to-server/)
 
 ### 公网访问
 
-> 2024-04-20 更新：[DDNS v Tailscale v Cloudflared](https://blog.krdw.site/posts/ddns-tailscale-cloudflared/)，在这篇文章中我弃用了下面的方案，转用 Tailscale，仅供参考。
+> 2024-04-20 更新：[DDNS v Tailscale v Cloudflared](https://k1r.in/posts/ddns-tailscale-cloudflared/)，在这篇文章中我弃用了下面的方案，转用 Tailscale，仅供参考。
 
 至此，我们仅仅是搭建了一个能在局域网连接和访问的服务器，如果需要在非局域网环境连接或是访问，则需要进行相应的配置。
 
@@ -120,7 +120,7 @@ PS 如果你没有云服务器，其实也不一定要配置 IPv4 公网访问�
 - [Syncthing](https://github.com/linuxserver/docker-syncthing)：在不同设备间同步文件，全平台支持。
 - ……
 
-> 你也可以参考我这篇博客：[搭建自己的在线动漫资源库](https://blog.krdw.site/posts/qbit-rclone-alist/)
+> 你也可以参考我这篇博客：[搭建自己的在线动漫资源库](https://k1r.in/posts/qbit-rclone-alist/)
 
 ### 你可能需要
 

@@ -34,7 +34,7 @@ description: "从 RSSHub 和 WeWeRSS 获取 RSS 订阅源链接，部分使用 r
 
 **在国内，RSS 已经是一项很少见的技术了，很少有网站会主动提供 RSS 订阅链接，现在会主动提供 RSS 订阅链接的网站主要是博客。**
 
-比如我的博客也提供了 RSS 订阅链接：[KrDw Publish RSS](https://blog.krdw.site/rss.xml)，你可以用来订阅我的博客。
+比如我的博客也提供了 RSS 订阅链接：[KrDw Publish RSS](https://k1r.in/rss.xml)，你可以用来订阅我的博客。
 
 如果你关注一些 GitHub 开源项目的话，你也**在 Releases 链接末尾加上 `.atom` 来订阅项目 Releases 信息**。
 

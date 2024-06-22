@@ -1,7 +1,7 @@
 import type { Site, SocialObjects } from "./types";
 
 export const SITE: Site = {
-  website: "https://blog.krdw.site", // replace this with your deployed domain
+  website: "https://k1r.in", // replace this with your deployed domain
   author: "KrDw",
   desc: "Noting is to reinforce the future.",
   title: "KrDw Publish",
@@ -38,13 +38,13 @@ export const SOCIALS: SocialObjects = [
   },
   {
     name: "WeChat",
-    href: "https://t.k1r.in/wechat",
+    href: "https://s.k1r.in/wechat",
     linkTitle: `The Newest Posts on WeChat`,
     active: true,
   },
   {
     name: "RSS",
-    href: "https://blog.krdw.site/rss.xml",
+    href: "https://k1r.in/rss.xml",
     linkTitle: `KrDw Publish RSS`,
     active: true,
   },

@@ -31,7 +31,7 @@ export default function SearchBar({ searchList }: Props) {
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       // Perform Google search with the site query
-      const googleSearchUrl = `https://www.google.com/search?q=site:blog.krdw.site ${inputVal}`;
+      const googleSearchUrl = `https://www.google.com/search?q=site:k1r.in ${inputVal}`;
       window.location.href = googleSearchUrl;
     }
   };
@@ -108,15 +108,15 @@ export default function SearchBar({ searchList }: Props) {
       {inputVal.length > 1 && (
         <div className="mt-8 text-center">
           <span>
-            <a href={`https://www.google.com/search?q=site:blog.krdw.site ${inputVal}`}>使用 Google 搜索 “{inputVal}”</a>
+            <a href={`https://www.google.com/search?q=site:k1r.in ${inputVal}`}>使用 Google 搜索 “{inputVal}”</a>
           </span>
           <span className="block sm:inline-block">&nbsp;或者&nbsp;</span>
           <span>
-            <a href={`https://bing.com/search?q=site:blog.krdw.site ${inputVal}`}>使用 Bing 搜索 “{inputVal}”</a>
+            <a href={`https://bing.com/search?q=site:k1r.in ${inputVal}`}>使用 Bing 搜索 “{inputVal}”</a>
           </span>
         </div>
       )}
-      
+
       <ul>
         {searchResults &&
           searchResults.map(({ item, refIndex }) => (
