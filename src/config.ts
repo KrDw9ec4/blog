@@ -44,7 +44,7 @@ export const SOCIALS: SocialObjects = [
   },
   {
     name: "RSS",
-    href: "https://k1r.in/rss.xml",
+    href: "/rss.xml",
     linkTitle: `KrDw Publish RSS`,
     active: true,
   },
