@@ -9,6 +9,8 @@ title: "关于"
 
 将博客地址逐渐迁移到 k1r.in。
 
+使用 [CloudFlare Worker](https://developers.cloudflare.com/workers/examples/redirect/#redirect-requests-from-one-domain-to-another) 实现 301 重定向跳转。
+
 ### 06-15
 
 将博客部署到 [CloudFlare Pages](https://krdw.pages.dev/)，通过 CNAME 解析。
