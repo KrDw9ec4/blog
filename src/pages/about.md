@@ -19,7 +19,7 @@ title: "关于"
 
 从 Hexo 迁移到 Astro，采用 [Astro-Paper](https://github.com/satnaing/astro-paper) 主题。
 
-还是改回用文件名做永久链接而不是时间戳，原来的访问地址采用 Rewrite 重写确保访问正常。
+还是改回用文件名做永久链接而不是时间戳，原来的访问地址~~采用 Rewrite 重写~~采用 Redirect 重定向确保访问正常。
 
 <div style="display: flex; flex-wrap: wrap;">
   <div style="flex: 1 1 50%; padding: 5px;">
