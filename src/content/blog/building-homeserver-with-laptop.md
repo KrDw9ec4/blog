@@ -29,7 +29,7 @@ description: "笔记本安装 Ubuntu Server 系统，路由器支持 IPv6 实现
 首先介绍一下我用的笔记本，联想 Thinkpad E431：
 
 - 发布于 2013 年左右的笔记本
-- CPU 是“Intel i3-3110M\@2.400GHz”
+- CPU 是“Intel i3-3110M @2.400GHz”
 - GPU 是“NVIDIA GeForce GT 740M”
 - 4G 内存
 - 原装 500G 机械硬盘，后来换的 256G 固态。
