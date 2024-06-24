@@ -5,7 +5,7 @@ export const SITE: Site = {
   author: "KrDw",
   desc: "Noting is to reinforce the future.",
   title: "KrDw Publish",
-  ogImage: "astropaper-og.jpg",
+  ogImage: "og.png",
   lightAndDarkMode: true,
   postPerPage: 10,
   scheduledPostMargin: 15 * 60 * 1000, // 15 minutes
