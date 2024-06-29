@@ -167,7 +167,7 @@ docker compose up -d # docker compose 部署服务
 
 方法来源：[蜜柑计划RSS无法访问的解决办法|Bangumi](https://bgm.tv/group/topic/380685)。
 
-需要注意的是，这个方法需要你准备一个托管在 CloudFlare Worker 的域名。
+需要注意的是，这个方法需要你准备一个托管在 CloudFlare 的域名。
 
 你可以选择先跳过这个，等之后有需求时再回过头来折腾，其实也很简单，上边链接里也说明清楚怎么操作了。
 
