@@ -12,6 +12,8 @@ tags:
 description: "在云服务器使用 docker compose 快速部署 memos。"
 ---
 
+### Table of Contents
+
 memos 项目地址：[usememos/memos](https://github.com/usememos/memos)
 
 ![memos项目首页](https://img.k1r.in/2024/05/picgo_9abc564351e582e4de081ee9f6dc6d94.png)

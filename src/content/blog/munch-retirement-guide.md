@@ -10,6 +10,8 @@ tags:
 description: "选择自己喜欢的 ROM，用 KSU 或 Magisk 刷入 Moto Addon 替换系统软件，优先安装定制版软件。"
 ---
 
+### Table of Contents
+
 > ⚠️ 2024-05-20 更新：[安卓定制包ElixirOS存在恶意代码 若用户尝试绕过付费则清除所有数据](https://www.landiannews.com/archives/104000.html)
 >
 > 由于存在恶意格机代码，不再推荐使用 Project Elixir，但下文中的思路可以参考。

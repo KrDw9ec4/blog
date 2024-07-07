@@ -37,3 +37,4 @@ pnpm-debug.log*
 draft_template.md
 .stignore
 .stfolder
+.obsidian

@@ -12,6 +12,8 @@ tags:
 description: "我的建议是先跟着廖雪峰的图文教程一步一步走一遍 git 工作流程，然后看 GeekHour 的视频教程加深理解，官方文档供后续使用时按需查找。"
 ---
 
+### Table of Contents
+
 ## 推荐教程
 
 - 图文教程：[廖雪峰的 git 教程](https://www.liaoxuefeng.com/wiki/896043488029600)

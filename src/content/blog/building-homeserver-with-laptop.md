@@ -3,13 +3,15 @@ author: KrDw
 pubDatetime: 2024-03-02T16:22:34.000+08:00
 modDatetime: 2024-06-10T00:00:53.000+08:00
 title: 用笔记本来搭建本地服务器
-featured: true
+featured: false
 draft: false
 tags:
   - homeserver
   - network
 description: "笔记本安装 Ubuntu Server 系统，路由器支持 IPv6 实现公网 IPv6 访问，宽带有公网 IPv4 或者有一台云服务器实现公网 IPv4 访问，最终实现通过 IPv4 + IPv6 双栈访问服务器，安装 docker 来快速部署和方便管理服务。"
 ---
+
+### Table of Contents
 
 ![neofetch系统信息](https://img.k1r.in/2024/05/picgo_5381da4949d117c29bf688c8175108d7.png)
 
