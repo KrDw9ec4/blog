@@ -12,13 +12,15 @@ description: "介绍一种流程实现 qBittorrent 下载后使用 Rclone + ALis
 
 ### Table of Contents
 
+### 前言
+
 由于国内审批制度的存在，阿 B 的动漫大多会延迟三集上线，所以需要自己去找字幕组资源下载下来观看。接下来介绍一种流程实现 qbit 下载后使用 rclone + alist webdav 上传到阿里云盘实现高速播放，不受限于家宽上传带宽。
 
 **你或许会问，为什么不直接播放服务器上的视频？**
 
 首先，国内家宽大多都是上传下载不对等，如果在外播放服务器上的视频，会受限于服务器的上传带宽，而如果上传到阿里云盘，就目前来看播放视频还是没有限速的，你上传到 OneDrive 也可以，总之就是要通过网盘走下载带宽来高速播放。
 
-其次，如果你看过我之前的这篇[博客](https://k1r.in/posts/building-homeserver-with-laptop/)，你会知道我是用一台只有 256G 硬盘空间的笔记本搭建的家用服务器，这点空间存点自己要看的动漫还是够用的，但我的空间不只是用来存视频的。
+其次，如果你看过我之前的这篇[博客](../building-homeserver-with-laptop/)，你会知道我是用一台只有 256G 硬盘空间的笔记本搭建的家用服务器，这点空间存点自己要看的动漫还是够用的，但我的空间不只是用来存视频的。
 
 PS 也不一定要用服务器，qbit rlone alist 都有 Windows 版本，所以你的 Windows 电脑也能走通这套流程。
 
@@ -117,7 +119,7 @@ PS 弹弹 play 支持多平台（Windows/macOS/Android/iOS）。
 
 前面也提了其实用 Windows 也可以实现这一套流程，这里大致提一嘴：
 
-- 在 Windows 上安装 qbit rclone alist ddns-go，前三个作用前面提了，ddns-go 在这篇[博客](https://k1r.in/posts/building-homeserver-with-laptop/)里提了，主要是用于绑定 IP 地址到域名。
+- 在 Windows 上安装 qbit rclone alist ddns-go，前三个作用前面提了，ddns-go 在这篇[博客](../building-homeserver-with-laptop/)里提了，主要是用于绑定 IP 地址到域名。
 - qbit alist 设置开机启动，如何设置自行搜索。
 - 打开 Windows 防火墙开放相应端口以便公网访问。
 - 使用“计划完成程序”代替 crontab 执行定时任务，如何使用也自行搜索。
