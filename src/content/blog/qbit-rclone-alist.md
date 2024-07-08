@@ -3,7 +3,7 @@ author: KrDw
 pubDatetime: 2024-03-03T01:25:48.000+08:00
 modDatetime: 2024-03-23T09:10:02.000+08:00
 title: 搭建自己的在线动漫资源库
-featured: true
+featured: false
 draft: false
 tags:
   - homeserver
