@@ -5,6 +5,10 @@ title: "关于"
 
 ## 2024 年
 
+### 07-08
+
+使用 [giscus](https://giscus.app/zh-CN) 作为评论系统，参照教程 [Astro 搭建博客系列](https://s.k1r.in/frg59r)。
+
 ### 06-22
 
 将博客地址逐渐迁移到 k1r.in。
