@@ -5,6 +5,9 @@ modDatetime:
 title: 利用 Syncthing 和 Tailscale 实现文件同步
 featured: true
 draft: false
+tags:
+  - homeserver
+  - PRACTICES
 description: "在国内复杂的网络环境下，利用 Tailscale 解决设备发现和连接问题，充分发挥 Syncthing 的文件同步能力，并附上具体操作步骤。"
 ---
 

@@ -9,6 +9,7 @@ tags:
   - server
   - rss
   - docker
+  - PRACTICES
 description: "从 RSSHub 和 WeWeRSS 获取 RSS 订阅源链接，部分使用 rss-proxy 进行代理，使用 FreshRSS 作为 RSS 服务端，安卓使用 ReadYou 进行阅读。"
 ---
 
