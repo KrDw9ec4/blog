@@ -3,7 +3,7 @@ author: KrDw
 pubDatetime: 2024-03-02T16:22:34.000+08:00
 modDatetime: 2024-06-10T00:00:53.000+08:00
 title: 用笔记本来搭建本地服务器
-featured: true
+featured: false
 draft: false
 tags:
   - homeserver

@@ -2,7 +2,7 @@
 author: KrDw
 pubDatetime: 2024-07-08T03:00:00.000+08:00
 modDatetime: 2024-07-08T11:27:00.000+08:00
-title: 利用 Syncthing 和 Tailscale 实现文件同步
+title: 使用 Syncthing 和 Tailscale 实现文件同步
 featured: true
 draft: false
 tags:
