@@ -48,13 +48,13 @@ HTTPS 相比于直接 HTTP 访问更安全，但需要 SSL 证书，在反向代
 
 [点击此处查看后续的 Caddy 配置文件示例](#4-编辑-caddyfile)
 
-虽然很多人推荐新手使用 Nginx Proxy Manager，图形化界面加上能申请泛域名证书，对新手很友好。它内存占用高，主体加上数据库的大小超过 100MB，而 Caddy 的内存占用则仅仅不到 30MB。
+虽然很多人推荐新手使用 Nginx Proxy Manager，图形化界面加上能申请泛域名证书，对新手很友好。但它内存占用高，主体加上数据库的大小超过 100MB，而 Caddy 的内存占用则仅仅不到 30MB。
 
 #### (1) 安装 Caddy
 
 Caddy 的官方文档提供了多种安装方式，详细信息可在 [Caddy 官方文档的安装页面](https://caddyserver.com/docs/install)找到。
 
-虽然 Caddy 可以使用 Docker 部署，但我试过后并不推荐，反而使用起来更为复杂。
+虽然 Caddy 可以使用 Docker 部署，但我试过后并不推荐，使用起来反而更复杂。
 
 我这里就贴一下在 Debian 系统上安装的示例：
 
@@ -133,7 +133,7 @@ export CF_Token="<cloudflare-api-token>" # 替换成你的 API 令牌
 acme.sh --issue --dns dns_cf -d example.com -d '*.example.com'
 ```
 
-等待脚本执行完毕，就成功申请了。失败
+等待脚本执行完毕，就成功申请了。
 
 #### (3) 安装证书
 
