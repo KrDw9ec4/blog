@@ -155,13 +155,13 @@ vim ~/Caddy/Caddyfile
 ~~~ # 分隔符，表示进入文本编辑界面
 www.example.com {
     encode gzip
-	  tls ~/Caddy/example.com/cert.pem ~/Caddy/example.com/key.pem
+	tls ~/Caddy/example.com/cert.pem ~/Caddy/example.com/key.pem
     reverse_proxy 127.0.0.1:8080
 }
 
 blog.example.com {
     encode gzip
-	  tls ~/Caddy/example.com/cert.pem ~/Caddy/example.com/key.pem
+	tls ~/Caddy/example.com/cert.pem ~/Caddy/example.com/key.pem
     reverse_proxy 127.0.0.1:9090
 }
 # 英文下键入 :wq，保存并退出
