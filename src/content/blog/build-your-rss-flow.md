@@ -1,7 +1,7 @@
 ---
 author: KrDw
 pubDatetime: 2024-05-08T14:00:29.000+08:00
-modDatetime: 2024-06-01T15:01:00.000+08:00
+modDatetime: 2024-07-26T23:41:09.000+08:00
 title: 打造自己的 RSS 信息流
 featured: true
 draft: false
@@ -73,10 +73,11 @@ description: "从 RSSHub 和 WeWeRSS 获取 RSS 订阅源链接，部分使用 r
 
 **(1) 安装 docker 和 docker compose**
 
-请参见“Docker — 从入门到实践”的安装教程：https://yeasy.gitbook.io/docker_practice/install
+> 2024-07-26 更新：由于前段时间国内镜像站大多都关闭了 DockerHub 的镜像加速服务，所以你如果想使用 docker（使用 docker = 安装 docker + 拉取 docker 镜像）可能得自己解决网络问题。
 
-- 走这个教程安装其实已经附带安装了 docker compose 插件，**不用单独安装 docker-compose**；
-- 如果是国内环境，请**在安装时使用他给的国内镜像源的代码**，因为 RSSHub 的 docker 镜像很大，如果是官方源拉取速度慢不说还不稳定。
+参照 [Docker CE 软件仓库 | TUNA](https://mirrors.tuna.tsinghua.edu.cn/help/docker-ce/) **安装 docker** 和 docker compose。
+
+这里提供了一种**拉取 docker 镜像**的解决方法 [dockerhub.icu](https://dockerhub.icu/)，请查看里面的说明使用。
 
 **(2) docker compose 部署**
 
@@ -84,18 +85,38 @@ description: "从 RSSHub 和 WeWeRSS 获取 RSS 订阅源链接，部分使用 r
 
 首先，在**你自己的电脑**上，复制 [RSSHub 提供的 compose 代码](https://github.com/DIYgod/RSSHub/blob/master/docker-compose.yml)，粘贴到文本编辑器中。
 
-然后，你可以参考我的做法，删除最后一段，`-` 开头表示删除这一行，`+` 开头表示添加这一行。
-
 ```yaml
-         volumes:
--            - redis-data:/data
-+            - ~/docker/data/rsshub/data:/data
--
--volumes:
--    redis-data:
+services:
+    rsshub:
+        image: diygod/rsshub
+        restart: always
+        ports:
+            - '1200:1200'
+        environment:
+            NODE_ENV: production
+            CACHE_TYPE: redis
+            REDIS_URL: 'redis://redis:6379/'
+            PUPPETEER_WS_ENDPOINT: 'ws://browserless:3000'
+        depends_on:
+            - redis
+            - browserless
+
+    browserless:
+        image: browserless/chrome
+        restart: always
+        ulimits:
+          core:
+            hard: 0
+            soft: 0
+
+    redis:
+        image: redis:alpine
+        restart: always
+        volumes:
+            - ~/docker/data/rsshub/data:/data # 这里修改了挂载路径
 ```
 
-最后，在**你的服务器**上，在命令行中：
+然后，在**你的服务器**上，在命令行中：
 
 ```shell
 mkdir -p ~/docker/compose/rsshub && cd ~/docker/compose/rsshub # 创建 RSSHub compose 文件的存储文件夹
@@ -118,6 +139,10 @@ docker compose up -d # docker compose 部署服务
 ![成功部署RSSHUB](https://img.k1r.in/2024/05/picgo_79304257a317b95e2156b30fac627acd.png)
 
 其实到这一步已经成功自部署 RSSHub 了，至于配置反向代理使用域名访问这里（和后文）就不讲了，不是必需的，一是域名解析到国内云服务器需要备案（备案要等大概十来天），二是网上很多相关教程了，小白建议用 Caddy（配置简单，占用小，但没有图形化界面）/ Nginx Proxy Manger（docker 部署，占用较大，有 webui）。
+
+> 2024-07-10 更新：[《使用 Caddy 和 acme.sh 实现反向代理》](../reserve-proxy-caddy-acmesh)
+>
+> 使用 acme.sh 定期申请泛域名 SSL 证书，配置 Caddy 进行反向代理，实现 HTTPS + 域名访问。
 
 如果你用了前文提到的 RSSHub Radar 插件，就可以在插件设置的“RSSHub 实例”那里填入 `http://<公网IP>:1200`。
 
