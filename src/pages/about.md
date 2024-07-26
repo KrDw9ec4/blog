@@ -3,6 +3,8 @@ layout: ../layouts/AboutLayout.astro
 title: "关于"
 ---
 
+比起网上千篇一律的部署教程，我更想给出的是一个具有参考意义的实践方案。
+
 ## 2024 年
 
 ### 07-08
