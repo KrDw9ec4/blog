@@ -1,0 +1,15 @@
+---
+// FirstVisitPrompt.astro
+---
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const isFirstVisit = localStorage.getItem('isFirstVisit');
+
+    if (!isFirstVisit) {
+      alert('致第一次访问的读者：\n如果文章页面底部没有评论区，请尝试刷新！');
+      localStorage.setItem('isFirstVisit', 'false');
+    }
+  });
+</script>
+
