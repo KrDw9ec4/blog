@@ -7,9 +7,13 @@ title: "关于"
 
 ## 2024 年
 
+### 07-27
+
+采用对游客更友好的 [twikoo](https://twikoo.js.org/) 作为评论系统，现在你可以不用登录即可匿名评论。
+
 ### 07-08
 
-使用 [giscus](https://giscus.app/zh-CN) 作为评论系统，参照教程 [Astro 搭建博客系列](https://s.k1r.in/frg59r)。
+~~使用 [giscus](https://giscus.app/zh-CN) 作为评论系统，参照教程 [Astro 搭建博客系列](https://s.k1r.in/frg59r)。~~
 
 ### 06-22
 

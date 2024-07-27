@@ -8,7 +8,6 @@ import type { CollectionEntry } from "astro:content";
 import { slugifyStr } from "@utils/slugify";
 import ShareLinks from "@components/ShareLinks.astro";
 import { SITE } from "@config";
-import Comment from "@components/Comment.astro";
 export interface Props {
   post: CollectionEntry<"blog">;
 }
@@ -46,10 +45,8 @@ const layoutProps = {
 };
 ---
 
-<Comment />
 <Layout {...layoutProps}>
   <Header />
-
   <!-- <div class="progress-container fixed top-0 z-10 h-1 w-full bg-skin-fill">
     <div class="progress-bar h-1 w-0 bg-skin-accent" id="myBar"></div>
   </div> -->
@@ -99,6 +96,7 @@ const layoutProps = {
 
       <ShareLinks />
     </div>
+  <div id="tcomment" client:load></div>
   </main>
   <Footer />
 </Layout>
@@ -219,4 +217,15 @@ const layoutProps = {
     });
   }
   backToTop();
+</script>
+
+<script is:inline src="/twikoo.min.js"></script>
+<script client:load>
+twikoo.init({
+  envId: 'https://twikoo.k1r.in', // 腾讯云环境填 envId；Vercel 环境填地址（https://xxx.vercel.app）
+  el: '#tcomment', // 容器元素
+  // region: 'ap-guangzhou', // 环境地域，默认为 ap-shanghai，腾讯云环境填 ap-shanghai 或 ap-guangzhou；Vercel 环境不填
+  // path: location.pathname, // 用于区分不同文章的自定义 js 路径，如果您的文章路径不是 location.pathname，需传此参数
+  // lang: 'zh-CN', // 用于手动设定评论区语言，支持的语言列表 https://github.com/twikoojs/twikoo/blob/main/src/client/utils/i18n/index.js
+})
 </script>
