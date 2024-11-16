@@ -1,7 +1,7 @@
 ---
 author: KrDw
 pubDatetime: 2024-05-08T14:00:29.000+08:00
-modDatetime: 2024-07-26T23:41:09.000+08:00
+modDatetime: 2024-11-16T17:11:51.000+08:00
 title: 打造自己的 RSS 信息流
 featured: true
 draft: false
@@ -324,14 +324,20 @@ Fluent UI 是微软的设计语言，所以还挺适合在 Windows 使用的，�
 
 正如项目名 ALL about RSS，所有有关 RSS 的内容都会被收录于此，如果你在使用 RSS 过程中有什么需求/问题，可以先在这里寻找答案。
 
-**(2) Newsletter 转 RSS**
+**(2) FreshRSS XPath 网页抓取**
+
+2024-11-16 [使用 Xpath 进行网页抓取（FreshRSS）](../freshrss-xpath-web-scraping/)
+
+在 FreshRSS 中，使用 HTML + XPath 进行网页抓取，并配合原文的 CSS 选择器获取原文。
+
+**(3) Newsletter 转 RSS**
 
 Newsletter 也是构建信息流的一种方式，它是通过邮件订阅的，可能有一些网站只提供 Newsletter 订阅方式，这时我们可以使用一些公益服务将其转换为 RSS。
 
 - Notifier: https://notifier.in/
 - Kill the Newsletter!: https://kill-the-newsletter.com/
 
-**(3) 对 RSS 订阅源进行内容筛选**
+**(4) 对 RSS 订阅源进行内容筛选**
 
 2024-05-14 才发现 RSSHub 可以通过[配置通用参数](https://docs.rsshub.app/zh/guide/parameters)进行筛选，支持正则表达式。
 
@@ -341,7 +347,7 @@ Newsletter 也是构建信息流的一种方式，它是通过邮件订阅的，
 >
 > Subscribe to see only what you want to see!
 
-**(4) RSS 阅读器设置**
+**(5) RSS 阅读器设置**
 
 这是一个主观建议，由于这一套流程采用的是利用 RSSHub 绕过网站自身限制获取 RSS 订阅源链接，所以内容中的图片往往不能很好的显示，建议在信息流界面关闭“订阅源图标”和“文章插图”（如果有的话，这是 ReadYou 的称呼），这样信息流界面会好看很多。
 
