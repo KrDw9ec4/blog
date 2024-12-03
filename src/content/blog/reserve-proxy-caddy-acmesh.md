@@ -1,7 +1,7 @@
 ---
 author: KrDw
 pubDatetime: 2024-07-10T01:00:11.000+08:00
-modDatetime: 
+modDatetime: 2024-12-03T16:05:05.000+08:00
 title: 使用 Caddy 和 acme.sh 实现反向代理
 featured: false
 draft: false
@@ -126,10 +126,15 @@ PS 你可以把这里的邮箱地址改为你的邮箱，在 SSL 证书快到期
 
 打开 CloudFlare 官网，右上角“我的个人资料”，“API 令牌”点“创建令牌”，“API 令牌模板”-“编辑区域 DNS”-“使用模板”，“区域资源”-“包括特定区域”，选择你的域名。
 
+![用户 API 令牌](https://img.k1r.in/2024/12/picgo_d5ab976dbe666f1d3a206b59cfae519f.png)
+
 点击继续，保存给出的 API 令牌。
+
+参照教程，[最好使用账户 ID 而不是区域 ID](https://github.com/acmesh-official/acme.sh/wiki/dnsapi#ii-multiple-dns-zones)，以便为**同一账户的多个域名**进行申请。账户 ID 就是登录后网址最后那串字符。
 
 ```shell
 export CF_Token="<cloudflare-api-token>" # 替换成你的 API 令牌
+export CF_Account_ID="<cloudflare-account-id>" # 替换成你的账户 ID
 acme.sh --issue --dns dns_cf -d example.com -d '*.example.com'
 ```
 
