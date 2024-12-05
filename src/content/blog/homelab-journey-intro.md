@@ -1,7 +1,7 @@
 ---
 author: KrDw
 pubDatetime: 2024-09-21T14:30:00.000+08:00
-modDatetime: 2024-09-21T14:30:00.000+08:00
+modDatetime: 2024-12-05T23:00:00.000+08:00
 title: 从零搭建 HomeLab 实践系列 - 序
 featured: true
 draft: false
@@ -32,6 +32,10 @@ description: "介绍一下从笔记本服务器到自组 NAS 的过程与思路�
 这是一个系列，主要讲我是**如何从零搭建 HomeLab，分享我的实践方案**（而非教程）供你参考。
 
 我大致确认了要写下面几篇文章（参照前面说的需求，标题内容暂定），尽量在年内写完 :D
+
+**(0) [自组 All in One 的硬件选配方案](../homelab-hardware-configuration/)** ✅2024-12-05
+
+用乔思伯 N2 机箱、云星 B365 主板和 i3-8100T 等组建一台 All in One，分享一下硬件选配思路。
 
 **(1) 使用 ProxmoxVE + TrueNAS + Debian 搭建 Homelab 框架** 1️⃣
 
