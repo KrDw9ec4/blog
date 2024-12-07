@@ -1,7 +1,7 @@
 ---
 author: KrDw
 pubDatetime: 2024-07-10T01:00:11.000+08:00
-modDatetime: 2024-12-03T16:05:05.000+08:00
+modDatetime: 2024-12-07T23:55:00.000+08:00
 title: 使用 Caddy 和 acme.sh 实现反向代理
 featured: false
 draft: false
@@ -68,10 +68,10 @@ sudo apt install caddy
 
 #### (2) 配置 Caddyfile
 
-Caddy 的配置文件称为 Caddyfile，你需要选择一个存放此文件的地方。我通常将其放置在 `~/Caddy/Caddyfile`。
+Caddy 的配置文件称为 Caddyfile，默认是放在 `/etc/caddy/Caddyfile`。
 
 ```shell
-vim ~/Caddy/Caddyfile
+sudo vim /etc/caddy/Caddyfile
 ~~~ # 分隔符，表示进入文本编辑界面
 www.example.com {
     reverse_proxy 127.0.0.1:8080
@@ -87,7 +87,7 @@ www.example.com {
 Caddy 需要使用 root 权限启动，否则将无法查看由 acme.sh 申请的泛域名 SSL 证书。
 
 ```shell
-sudo caddy start --config ~/Caddy/Caddyfile
+sudo caddy start --config /etc/caddy/Caddyfile
 ```
 
 之后，你可以通过 `http://www.example.com` 进行访问。
@@ -146,9 +146,9 @@ acme.sh --issue --dns dns_cf -d example.com -d '*.example.com'
 
 ```shell
 acme.sh --install-cert -d example.com \
---key-file       ~/Caddy/example.com/key.pem  \
---fullchain-file ~/Caddy/example.com/cert.pem \
---reloadcmd     "caddy reload --config ~/Caddy/Caddyfile"
+--key-file       ~/caddy/example.com/key.pem  \
+--fullchain-file ~/caddy/example.com/cert.pem \
+--reloadcmd     "caddy reload --config /etc/caddy/Caddyfile"
 ```
 
 #### (4) 编辑 Caddyfile
@@ -156,23 +156,23 @@ acme.sh --install-cert -d example.com \
 这里对 Caddyfile 进行编辑，让它用上刚刚申请的泛域名证书来配置 HTTPS。
 
 ```shell
-vim ~/Caddy/Caddyfile
+sudo vim /etc/caddy/Caddyfile
 ~~~ # 分隔符，表示进入文本编辑界面
 www.example.com {
     encode gzip
-	tls ~/Caddy/example.com/cert.pem ~/Caddy/example.com/key.pem
+	tls ~/caddy/example.com/cert.pem ~/caddy/example.com/key.pem
     reverse_proxy 127.0.0.1:8080
 }
 
 blog.example.com {
     encode gzip
-	tls ~/Caddy/example.com/cert.pem ~/Caddy/example.com/key.pem
+	tls ~/caddy/example.com/cert.pem ~/caddy/example.com/key.pem
     reverse_proxy 127.0.0.1:9090
 }
 # 英文下键入 :wq，保存并退出
 ~~~ # 分隔符，表示退出文本编辑界面
 # 重启 reload 让配置生效
-caddy reload --config ~/Caddy/Caddyfile
+caddy reload --config /etc/caddy/Caddyfile
 ```
 
 可以看到，我上面给出了两个子域名的反向代理配置，其实只用改动 reverse_proxy 这个参数。
@@ -183,16 +183,41 @@ caddy reload --config ~/Caddy/Caddyfile
 
 实际配置下来可能还会遇到很多问题，请自行查看相应的官方文档，或者把问题放在底下评论区，但我也不能保证我能解决，我也是小白捏。
 
-#### (1) 快速编辑 Caddyfile
+#### (1) 创建 Caddy 服务
+
+如果你使用 apt 安装，Caddy 自带 systemd 服务，默认的配置文件路径是位于 `/etc/caddy/Caddyfile`。
+
+```bash
+sudo systemctl status caddy
+# 查看 caddy 服务状态
+# 按 `q` 退出
+# 如果你之前是按步骤下来的，Caddy 正常运行的话，则需要先将 Caddy 暂停。
+caddy stop
+# 然后就可以尝试以 systemd 服务来启动 Caddy。
+sudo systemctl start caddy
+# 如果也正常运行的话，就可以让其开机自启动。
+sudo systemctl enable caddy
+```
+
+之后修改 Caddyfile 后有如下两种方式让其生效。
+
+```bash
+caddy reload --config /etc/caddy/Caddyfile
+# 或者
+sudo systemctl reload caddy
+```
+
+#### (2) 快速编辑 Caddyfile
 
 可以用环境变量保存 Caddyfile 文件路径。
 
 ```shell
 vim ~/.bashrc # 其实我更推荐用单独文件保存环境变量和别名
 ~~~ # 分隔符，表示进入文本编辑界面
-export caddyfile=~/Caddy/Caddyfile
+export caddyfile=/etc/caddy/Caddyfile
 # 英文下键入 :wq，保存并退出
 ~~~ # 分隔符，表示退出文本编辑界面
+source ~/.bashrc # 刷新 bash 配置
 ```
 
 之后就可以用 `$caddyfile` 代替。
@@ -202,7 +227,7 @@ sudo caddy start --config $caddyfile
 caddy reload --config $caddyfile
 ```
 
-#### (2) 部署静态博客
+#### (3) 部署静态博客
 
 如果你在服务器上部署了静态博客，相应的 Caddyfile 配置如下。
 
@@ -211,7 +236,7 @@ blog.example.com {
 	encode gzip
 	root * /path/to/website # 替换为你的博客根目录
 	file_server
-	tls ~/Caddy/example.com/cert.pem ~/Caddy/example.com/key.pem
+	tls ~/caddy/example.com/cert.pem ~/caddy/example.com/key.pem
 }
 ```
 
