@@ -207,7 +207,31 @@ caddy reload --config /etc/caddy/Caddyfile
 sudo systemctl reload caddy
 ```
 
-#### (2) 快速编辑 Caddyfile
+#### (2) 非 80 443 端口
+
+在国内非备案情况下，80 和 443 端口常常是被封禁的，此时如果想要通过一个已知可用的端口来进行代替的话，比如 44380，用 Caddy 也很简单，就在原地址后面加端口就行。
+
+```shell
+sudo vim /etc/caddy/Caddyfile
+~~~ # 分隔符，表示进入文本编辑界面
+www.example.com:44380 {
+    encode gzip
+	tls ~/caddy/example.com/cert.pem ~/caddy/example.com/key.pem
+    reverse_proxy 127.0.0.1:8080
+}
+
+blog.example.com:44380 {
+    encode gzip
+	tls ~/caddy/example.com/cert.pem ~/caddy/example.com/key.pem
+    reverse_proxy 127.0.0.1:9090
+}
+# 英文下键入 :wq，保存并退出
+~~~ # 分隔符，表示退出文本编辑界面
+# 重启 reload 让配置生效
+sudo systemctl reload caddy
+```
+
+#### (3) 快速编辑 Caddyfile
 
 可以用环境变量保存 Caddyfile 文件路径。
 
@@ -227,7 +251,7 @@ sudo caddy start --config $caddyfile
 caddy reload --config $caddyfile
 ```
 
-#### (3) 部署静态博客
+#### (4) 部署静态博客
 
 如果你在服务器上部署了静态博客，相应的 Caddyfile 配置如下。
 
