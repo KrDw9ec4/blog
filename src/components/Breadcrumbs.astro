@@ -21,6 +21,9 @@ breadcrumbList[0] === "tags" &&
       Number(breadcrumbList[2]) === 1 ? "" : "(page " + breadcrumbList[2] + ")"
     }`
   );
+
+// Add breadcrumb for friends
+breadcrumbList[0] === "friends" && breadcrumbList.splice(0, 1, `友链`);
 ---
 
 <nav class="breadcrumb" aria-label="breadcrumb">

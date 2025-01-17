@@ -1,0 +1,42 @@
+---
+interface Friend {
+  name: string;
+  url: string;
+  description: string;
+}
+
+const friends = Astro.props.friends as Friend[];
+---
+
+<ul class="friend-list">
+  {
+    friends.map(friend => (
+      <li>
+        <a href={friend.url} target="_blank" rel="noopener noreferrer">
+          {friend.name}
+        </a>
+        : {friend.description}
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .friend-list {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+  }
+
+  .friend-list li {
+    margin-bottom: 0.5rem;
+  }
+
+  .friend-list a {
+    color: #007acc;
+    text-decoration: none;
+  }
+
+  .friend-list a:hover {
+    text-decoration: underline;
+  }
+</style>

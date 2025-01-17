@@ -23,6 +23,38 @@ export const LOGO_IMAGE = {
   height: 46,
 };
 
+export const FRIENDS1 = [
+  {
+    name: "fuuzen",
+    avatar: "https://fuuzen.github.io/assets/friends/fuuzen.jpg",
+    url: "https://taf.fyi",
+    description: "个人分享主页",
+  },
+];
+
+export const FRIENDS2 = [
+  {
+    name: "面条实验室",
+    url: "https://chi.miantiao.me",
+    description: "很多有意思的自部署项目，在用他的短链接项目 Sink。",
+  },
+  {
+    name: "Piglei",
+    url: "https://www.piglei.com",
+    description: "Python 编程经验分享，真的学到很多。",
+  },
+  {
+    name: "aptX",
+    url: "https://atpx.com",
+    description: "主题很好看，阅读体验很好。",
+  },
+  {
+    name: "rqdmap",
+    url: "https://rqdmap.top",
+    description: "各种各样的折腾经历和编程经验分享，主题很有特色。",
+  },
+];
+
 export const SOCIALS: SocialObjects = [
   {
     name: "Github",

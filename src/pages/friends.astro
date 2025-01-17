@@ -1,0 +1,44 @@
+---
+import { SITE, FRIENDS1, FRIENDS2 } from "@config";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import Layout from "@layouts/Layout.astro";
+import Main from "@layouts/Main.astro";
+import FriendCard from "@components/FriendCard.astro";
+import FriendList from "@components/FriendList.astro";
+---
+
+<Layout title={`友情链接 | ${SITE.title}`}>
+  <Header activeNav="friends" />
+  <Main
+    pageTitle="友情链接"
+    pageDesc="如果你想和我交换友链，欢迎联系我(hi@k1r.in)。"
+  >
+    <div class="friends-grid">
+      {FRIENDS1.map(friend => <FriendCard {...friend} />)}
+    </div>
+    <h2>推荐阅读</h2>
+    <FriendList friends={FRIENDS2} />
+  </Main>
+  <Footer />
+</Layout>
+
+<style>
+  .friends-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    .friends-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    @apply text-2xl font-semibold tracking-wide;
+  }
+</style>

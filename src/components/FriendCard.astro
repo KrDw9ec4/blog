@@ -1,0 +1,73 @@
+---
+interface Friend {
+  name: string;
+  avatar: string;
+  url: string;
+  description: string;
+}
+
+const { name, avatar, url, description } = Astro.props as Friend;
+---
+
+<div class="friend-card">
+  <a href={url} target="_blank" rel="noopener noreferrer" class="friend-link">
+  <div class="left-card">
+    <img src={avatar} alt={name} class="friend-avatar" />
+  </div>
+  <div class="right-card">
+    <strong>{name}</strong>
+    <p>{description}</p>
+  </div>
+  </a>
+</div>
+
+<style>
+  .friend-card {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    transition: box-shadow 0.3s ease;
+  }
+
+  .friend-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .friend-link {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+  }
+
+  .friend-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 1rem;
+  }
+
+  .left-card {
+    display: flex;
+  }
+  
+  .right-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 80%;
+  }
+
+  .right-card p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #666;
+  }
+
+  .left-card strong {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }

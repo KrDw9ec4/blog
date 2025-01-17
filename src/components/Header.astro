@@ -3,7 +3,7 @@ import { LOGO_IMAGE, SITE } from "@config";
 import Hr from "./Hr.astro";
 import LinkButton from "./LinkButton.astro";
 export interface Props {
-  activeNav?: "posts" | "tags" | "about" | "search";
+  activeNav?: "posts" | "tags" | "about" | "search" | "friends";
 }
 
 const { activeNav } = Astro.props;
@@ -64,6 +64,10 @@ const { activeNav } = Astro.props;
               标签
             </a>
           </li>
+          <li>
+            <a href="/friends/" class={activeNav === "friends" ? "active" : ""}>
+              友链
+            </a>
           <li>
             <a href="/about/" class={activeNav === "about" ? "active" : ""}>
               关于
