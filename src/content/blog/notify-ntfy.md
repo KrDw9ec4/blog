@@ -109,7 +109,7 @@ smtp-server-domain: "ntfy.example.com"
 smtp-server-addr-prefix: "ntfy-"
 ```
 
-值得一提的是，虽然很多云服务器商都默认关闭 25 端口的发送，给我们创建域名邮箱设立了门槛，但大多未禁止 25 端口的接收。
+值得一提的是，虽然很多云服务器商都默认关闭 25 端口的发送，给我们创建域名邮箱设立了门槛，但大多未禁止 25 端口的接收，需要**手动放行 25 端口**。
 
 之后就可以使用 `ntfy-<topic>+<access token>@ntfy.example.com` 地址来接收邮件。
 
@@ -122,10 +122,10 @@ smtp-server-addr-prefix: "ntfy-"
 | 名称                | 类型 | 值                     | 备注                                  |
 | ------------------- | ---- | ---------------------- | ------------------------------------- |
 | ntfy.example.com    | A    | `公网 IPv4 地址`       | 对应 `base-url`，是访问 WebUI 的地址  |
-| ntfy.example.com    | MX   | 10 ntfy-mx.example.com | 对应 `smtp-server-domain`，是邮件地址 |
+| ntfy.example.com    | MX   | ntfy-mx.example.com | 对应 `smtp-server-domain`，是邮件地址 |
 | ntfy-mx.example.com | A    | `公网 IPv4 地址`       | 和上面的值对应。                      |
 
-其实没有必要添加第三条记录，将 MX 记录的值 `10 ntfy-mx.example.com` 改成 `10 ntfy.example.com` 就可以了。
+其实没有必要添加第三条记录，将 MX 记录的值 `ntfy-mx.example.com` 改成 `ntfy.example.com` 就可以了。
 
 #### 反向代理
 
