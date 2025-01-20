@@ -36,7 +36,7 @@ ntfy 有个官方实例 [ntfy.sh](https://ntfy.sh)，但是我推荐你自部署
 因为我的服务器是 Debian，所以使用下面命令来安装：
 
 ```bash
-sudo mkdir -p /etc/apt/keyring	s
+sudo mkdir -p /etc/apt/keyrings
 curl -fsSL https://archive.heckel.io/apt/pubkey.txt | sudo gpg --dearmor -o /etc/apt/keyrings/archive.heckel.io.gpg
 sudo apt install apt-transport-https
 sudo sh -c "echo 'deb [arch=amd64 signed-by=/etc/apt/keyrings/archive.heckel.io.gpg] https://archive.heckel.io/apt debian main' \
@@ -139,9 +139,9 @@ sudo vim /etc/caddy/Caddyfile
 
 ```
 ntfy.k1r.in {
-    encode gzip
-    tls /home/acme/certs/example.com.fc.crt /home/acme/certs/example.com.pem
-    reverse_proxy 127.0.0.1:2586
+        encode gzip
+        tls /home/acme/certs/example.com.fc.crt /home/acme/certs/example.com.pem
+        reverse_proxy 127.0.0.1:2586
 }
 ```
 
@@ -254,4 +254,37 @@ curl \
 
 主要涉及 Python jinja 语法，需要修改的话，可以用 `.handlebars` 后缀保存文件，就会有语法高亮。
 
-*未完待续*
+#### acme.sh
+
+根据 acme.sh 项目 Wiki - [Set notification for ntfy](https://github.com/acmesh-official/acme.sh/wiki/notify#25-set-notification-for-ntfy)，使用下面的命令来设置通知。
+
+```bash
+export NTFY_URL="https://ntfy.sh"
+export NTFY_TOPIC="xxxxxxxxxxxxx"
+
+acme.sh --set-notify --notify-hook ntfy
+```
+
+只提供了 URL 和 Topic 的传入，没有身份验证的方式。查阅对应的代码得知，其实就是对 URL 和 Topic 两个变量进行简单拼接，所以我们可以通过在 Topic 变量里添加查询参数对来实现身份验证。
+
+根据 ntfy.sh 官方文档 - [Query param](https://docs.ntfy.sh/publish/#query-param)，可以使用 `auth` 来完成身份验证，但这里的值不是用户密码/访问令牌，而是对二者编码后的结果。
+
+在 Linux 系统可以运行下面的命令（二者取其一即可）。
+
+⚠️ 注意将命令中的 `user:passwd` 或者 `tk_123456` 改成你的。
+
+```bash
+echo -n "Basic `echo -n 'phil:password' | base64`" | base64 | tr -d '='
+# 或者对访问令牌
+echo -n "Bearer tk_123456" | base64 | tr -d '='
+```
+
+然后就可以使用如下命令设置 acme.sh 的 ntfy 通知。
+
+```bash
+export NTFY_URL="https://ntfy.example.com"
+export NTFY_TOPIC="acmesh?auth=QmFza..."
+
+acme.sh --set-notify --notify-hook ntfy
+```
+
