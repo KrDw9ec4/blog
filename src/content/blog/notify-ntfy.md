@@ -1,6 +1,7 @@
 ---
 author: KrDw
 pubDatetime: 2025-01-20T14:50:00.000+08:00
+modDatetime: 2025-01-20T15:00:00.000+08:00
 title: 使用 ntfy 推送通知
 featured: false
 draft: false
@@ -123,6 +124,8 @@ smtp-server-addr-prefix: "ntfy-"
 | ntfy.example.com    | A    | `公网 IPv4 地址`       | 对应 `base-url`，是访问 WebUI 的地址  |
 | ntfy.example.com    | MX   | 10 ntfy-mx.example.com | 对应 `smtp-server-domain`，是邮件地址 |
 | ntfy-mx.example.com | A    | `公网 IPv4 地址`       | 和上面的值对应。                      |
+
+其实没有必要添加第三条记录，将 MX 记录的值 `10 ntfy-mx.example.com` 改成 `10 ntfy.example.com` 就可以了。
 
 #### 反向代理
 
