@@ -129,7 +129,7 @@ smtp-server-addr-prefix: "ntfy-"
 
 #### 反向代理
 
-这里我使用的方案是之前写过的一篇博客《[使用 Caddy 和 acme.sh 实现反向代理](../posts/reserve-proxy-caddy-acmesh/)》。
+这里我使用的方案是之前写过的一篇博客《[使用 Caddy 和 acme.sh 实现反向代理](../reserve-proxy-caddy-acmesh/)》。
 
 根据 ntfy 官方文档 - [Behind a proxy](https://docs.ntfy.sh/config/#behind-a-proxy-tls-etc)，但我没有用文档给出的参考配置。
 

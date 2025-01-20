@@ -253,7 +253,11 @@ getfacl ~/caddy/example.com
 
 这样应该在启动 Caddy 时就不会遇到文件权限冲突的问题了。
 
-#### (3) 非 80 443 端口
+#### (3) 使用 acme.sh 集中申请和统一分发 SSL 证书
+
+如果你有多台机器都需要使用 SSL 证书，那么我推荐你看一下我《[使用 acme.sh 集中申请和统一分发 SSL 证书](../acmesh-issue-deploy-certificates/)》中提到的方案。
+
+#### (4) 非 80 443 端口
 
 在国内非备案情况下，80 和 443 端口常常是被封禁的，此时如果想要通过一个已知可用的端口来进行代替的话，比如 44380，用 Caddy 也很简单，就在原地址后面加端口就行。
 
@@ -277,7 +281,7 @@ blog.example.com:44380 {
 sudo systemctl reload caddy
 ```
 
-#### (4) 快速编辑 Caddyfile
+#### (5) 快速编辑 Caddyfile
 
 可以用环境变量保存 Caddyfile 文件路径。
 
@@ -297,7 +301,7 @@ sudo caddy start --config $caddyfile
 caddy reload --config $caddyfile
 ```
 
-#### (5) 部署静态博客
+#### (6) 部署静态博客
 
 如果你在服务器上部署了静态博客，相应的 Caddyfile 配置如下。
 
