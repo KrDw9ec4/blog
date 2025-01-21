@@ -1,7 +1,7 @@
 ---
 author: KrDw
 pubDatetime: 2025-01-20T14:50:00.000+08:00
-modDatetime: 2025-01-20T15:00:00.000+08:00
+modDatetime: 2025-01-21T18:30:00.000+08:00
 title: 使用 ntfy 推送通知
 featured: false
 draft: false
@@ -87,7 +87,7 @@ cache-duration: "168h"
 
 **[访问控制](https://docs.ntfy.sh/config/#access-control)**
 
-设置成私有实例，需要创建用户和生成访问令牌来使用，在 []
+设置成私有实例，需要创建用户和生成访问令牌来使用，在下文[添加用户、访问令牌](#添加用户、访问令牌)给出了相应操作。
 
 - `auth-file`：user/access 数据库地址 `/var/lib/ntfy/user.db`，用于存放用户和访问令牌。
 - `auth-default-access`：匿名用户的访问授权 `deny-all`，即未验证用户不能读写 ntfy 主题消息。
