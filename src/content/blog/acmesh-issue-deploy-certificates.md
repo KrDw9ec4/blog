@@ -192,7 +192,7 @@ acme.sh --issue --dns dns_cf -d example.com -d '*.example.com'
 参照 acme.sh 项目的 Wiki - [deployhooks](https://github.com/acmesh-official/acme.sh/wiki/deployhooks#3-deploy-the-cert-to-remote-server-through-ssh-access)，可以通过 SSH 将证书部署到远程服务器。SSH 这个方法比较通用，但 Wiki 里也有其他特定场景的方法。
 
 ```bash
-# ⚠️ 注意将 admin 换成你的用户名，将 1.1.1.1 换成你的地址。
+# ⚠️ 注意将 1.1.1.1 换成你的地址。
 # export DEPLOY_SSH_CMD='ssh -p 8822'
 export DEPLOY_SSH_USER=acme
 export DEPLOY_SSH_SERVER="1.1.1.1 1.2.3.4"
