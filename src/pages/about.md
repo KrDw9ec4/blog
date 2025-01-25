@@ -3,17 +3,25 @@ layout: ../layouts/AboutLayout.astro
 title: "关于"
 ---
 
-比起网上千篇一律的部署教程，我更想给出的是一个具有参考意义的实践方案。
+比起网上千篇一律的安装/部署教程，我更想给出的是一个具有参考意义的实践方案。
+
+## 2025 年
+
+### 01-25
+
+采用 [waline](https://waline.js.org/)，参照 [槿呈Goidea - 你好 AstroPaper - 评论组件](https://justgoidea.com/posts/2024-011/#%E8%AF%84%E8%AE%BA%E7%BB%84%E4%BB%B6)，配合 Copilot，总算是成功解决了第一次打开时不会加载评论区的问题。
+
+Waline 部署在 Azure 白嫖的学生机上，**不出意外的话，会长期用下去**。
 
 ## 2024 年
 
 ### 07-27
 
-采用对游客更友好的 [twikoo](https://twikoo.js.org/) 作为评论系统，现在你可以不用登录即可匿名评论。
+~~采用对游客更友好的 [twikoo](https://twikoo.js.org/) 作为评论系统，现在你可以不用登录即可匿名评论。~~
 
 ### 07-08
 
-~~使用 [giscus](https://giscus.app/zh-CN) 作为评论系统，参照教程 [Astro 搭建博客系列](https://s.k1r.in/frg59r)。~~
+~~使用 [giscus](https://giscus.app/zh-CN) 作为评论系统，参照教程 [記住了 - Astro 搭建博客系列](https://www.jizhule.cn/posts/astro-%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%B3%BB%E5%88%97%E6%B7%BB%E5%8A%A0-giscus-%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/)。~~
 
 ### 06-22
 
@@ -48,7 +56,7 @@ title: "关于"
 
 ### 05-15
 
-添加 [sitemap](https://k1r.in/sitemap-0.xml)、使用 [Umami](https://s.k1r.in/5kh297) 进行统计。
+添加 [sitemap](https://k1r.in/sitemap-0.xml)、使用 [Umami](https://umami.is) 进行统计。
 
 ### 02-02
 

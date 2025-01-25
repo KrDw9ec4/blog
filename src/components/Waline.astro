@@ -1,0 +1,36 @@
+<div id="waline"></div>
+
+<script>
+  import { init } from "@waline/client";
+  import "@waline/client/style";
+
+  document.addEventListener("astro:page-load", () => {
+    function initWaline() {
+      const commentsContainer = document.getElementById("waline");
+      if (commentsContainer) {
+        init({
+          el: "#waline",
+          serverURL: "https://waline.k1r.in",
+          dark: "auto",
+          emoji: [
+            "//unpkg.com/@waline/emojis@1.2.0/bmoji",
+            "//unpkg.com/@waline/emojis@1.2.0/bilibili",
+            "//unpkg.com/@waline/emojis@1.1.0/weibo",
+          ],
+          commentSorting: "hottest",
+          requiredMeta: ["nick"],
+          imageUploader: false,
+          search: false,
+          // turnstileKey: "0x4AAAAAAA6JXbS-VG2qPNy2",
+          reaction: [],
+          locale: {
+            placeholder:
+              "期待收到您的评论与建议，我会尽快通过审核。\n\n  - 填写邮箱可在被回复时收到邮件提醒。\n  - 支持 Markdown 语法，图片请用图床。",
+            sofa: "评论区冷冷清清，快来发出第一条评论",
+          },
+        });
+      }
+    }
+    initWaline();
+  });
+</script>
