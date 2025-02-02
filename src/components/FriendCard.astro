@@ -11,13 +11,13 @@ const { name, avatar, url, description } = Astro.props as Friend;
 
 <div class="friend-card">
   <a href={url} target="_blank" rel="noopener noreferrer" class="friend-link">
-  <div class="left-card">
-    <img src={avatar} alt={name} class="friend-avatar" />
-  </div>
-  <div class="right-card">
-    <strong>{name}</strong>
-    <p>{description}</p>
-  </div>
+    <div class="left-card">
+      <img src={avatar} alt={name} class="friend-avatar" />
+    </div>
+    <div class="right-card">
+      <strong>{name}</strong>
+      <p>{description}</p>
+    </div>
   </a>
 </div>
 
@@ -53,7 +53,7 @@ const { name, avatar, url, description } = Astro.props as Friend;
   .left-card {
     display: flex;
   }
-  
+
   .right-card {
     display: flex;
     flex-direction: column;
@@ -71,3 +71,4 @@ const { name, avatar, url, description } = Astro.props as Friend;
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
   }
+</style>
