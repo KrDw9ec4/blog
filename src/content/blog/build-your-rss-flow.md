@@ -1,7 +1,7 @@
 ---
 author: KrDw
 pubDatetime: 2024-05-08T14:00:29.000+08:00
-modDatetime: 2024-11-16T17:11:51.000+08:00
+modDatetime: 2025-02-02T17:00:00.000+08:00
 title: 打造自己的 RSS 信息流
 featured: true
 draft: false
@@ -21,7 +21,7 @@ description: "从 RSSHub 和 WeWeRSS 获取 RSS 订阅源链接，部分使用 r
 
 ![RSS流程图](https://img.k1r.in/2024/07/picgo_38b1d1ab5fdd204ec2b863260f96b05b.svg)
 
-下面这个表格是这一套流程**大致的空间和内存占用**，如果只是部署这一套流程，那么 1G 内存的服务器就够用了。
+下面这个表格是这一套流程**大致的空间和内存占用**，如果只是部署这一套流程，那么 1G 内存的服务器应该勉强够用了（未长期验证）。
 
 | SERVICES | IMAGES                       | SIZE   | CONTAINERS           | MEMORY   |
 | -------- | ---------------------------- | ------ | -------------------- | -------- |
@@ -67,59 +67,90 @@ description: "从 RSSHub 和 WeWeRSS 获取 RSS 订阅源链接，部分使用 r
 
 我是采用 Docker Compose 在云服务器上部署 RSSHub 的。
 
-如果你有服务器，你就可以继续看下去，因为 docker compose 下载 compose 文件之后，部署即可，真的很简单。
+如果你有服务器，你就可以继续看下去，因为只需要下载/创建 Compose 文件之后，稍作修改部署即可，真的很简单。
 
-如果没有服务器，但如果你是学生，那你可以[在阿里云整一台免费的学生云服务器](https://developer.aliyun.com/plan/student)，或者你也可以跳到下一个部分，[官方文档的部署部分](https://docs.rsshub.app/zh/deploy/)给出了在一些云服务平台（Heroku、Zeabur、Vercel、Fly.io）搭建 RSSHub 实例的教程，这些云服务平台一般都有免费额度使用，而且一般足以个人正常使用。
+如果没有服务器，新人我推荐购买阿里云/腾讯云的 99/年的轻量服务器进行学习，不过只有国内地区，想要无端口域名访问就得备案。
 
-**(1) 安装 docker 和 docker compose**
+或者你也可以跳到下一个部分，[官方文档的部署部分](https://docs.rsshub.app/zh/deploy/)给出了在一些云服务平台（Heroku、Zeabur、Vercel、Fly.io）搭建 RSSHub 实例的教程，这些云服务平台一般都有免费额度使用，而且一般足以个人正常使用。
 
-> 2024-07-26 更新：由于前段时间国内镜像站大多都关闭了 DockerHub 的镜像加速服务，所以你如果想使用 docker（使用 docker = 安装 docker + 拉取 docker 镜像）可能得自己解决网络问题。
+**(1) 安装 Docker**
 
-参照 [Docker CE 软件仓库 | TUNA](https://mirrors.tuna.tsinghua.edu.cn/help/docker-ce/) **安装 docker** 和 docker compose。
+> 2024-07-26 更新：由于前段时间国内镜像站大多都关闭了 DockerHub 的镜像加速服务，所以你如果想使用 Docker（使用 Docker = 安装 Docker + 拉取 Docker 镜像）可能得自己解决网络问题。
 
-这里提供了一种**拉取 docker 镜像**的解决方法 [dockerhub.icu](https://dockerhub.icu/)，请查看里面的说明使用。
+参照 [Docker CE 软件仓库 | TUNA](https://mirrors.tuna.tsinghua.edu.cn/help/docker-ce/) **安装 Docker**。
 
-**(2) docker compose 部署**
+这里提供了一种**拉取 Docker 镜像**的解决方法 [dockerhub.icu](https://dockerhub.icu/)，请查看里面的说明使用。
+
+**(2) Docker Compose 部署**
 
 下面我就按照我的习惯带你来部署：
 
-首先，在**你自己的电脑**上，复制 [RSSHub 提供的 compose 代码](https://github.com/DIYgod/RSSHub/blob/master/docker-compose.yml)，粘贴到文本编辑器中。
+首先，在**你自己的电脑**上，复制 [RSSHub 提供的 Compose 文件](https://github.com/DIYgod/RSSHub/blob/master/docker-compose.yml)，粘贴到文本编辑器中，做出如下修改：
+
+- 在 `rsshub` 服务中添加 `env_file` 配置，然后环境变量可以放在同目录的 `.env` 文件中。
+- 在 `redis` 服务中修改 `volumes` 挂载路径为 `~/appdata/rsshub`，然后可以删除最后一段的 `volumes` 配置。
+
+最终得到如下 Compose 文件：
 
 ```yaml
 services:
-    rsshub:
-        image: diygod/rsshub
-        restart: always
-        ports:
-            - '1200:1200'
-        environment:
-            NODE_ENV: production
-            CACHE_TYPE: redis
-            REDIS_URL: 'redis://redis:6379/'
-            PUPPETEER_WS_ENDPOINT: 'ws://browserless:3000'
-        depends_on:
-            - redis
-            - browserless
+  rsshub:
+    # two ways to enable puppeteer:
+    # * comment out marked lines, then use this image instead: diygod/rsshub:chromium-bundled
+    # * (consumes more disk space and memory) leave everything unchanged
+    image: diygod/rsshub
+    restart: always
+    ports:
+      - "1200:1200"
+    environment:
+      NODE_ENV: production
+      CACHE_TYPE: redis
+      REDIS_URL: "redis://redis:6379/"
+      PUPPETEER_WS_ENDPOINT: "ws://browserless:3000" # marked
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:1200/healthz"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    depends_on:
+      - redis
+      - browserless # marked
+    env_file:
+      - .env
 
-    browserless:
-        image: browserless/chrome
-        restart: always
-        ulimits:
-          core:
-            hard: 0
-            soft: 0
+  browserless: # marked
+    image: browserless/chrome # marked
+    restart: always # marked
+    ulimits: # marked
+      core: # marked
+        hard: 0 # marked
+        soft: 0 # marked
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/pressure"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
-    redis:
-        image: redis:alpine
-        restart: always
-        volumes:
-            - ~/docker/data/rsshub/data:/data # 这里修改了挂载路径
+  redis:
+    image: redis:alpine
+    restart: always
+    # ⚠️ 修改 volumes 为你想要的挂载路径，并删除最底下那段 volumes。
+    volumes:
+      - ~/appdata/rsshub:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 5s
 ```
 
 然后，在**你的服务器**上，在命令行中：
 
 ```shell
-mkdir -p ~/docker/compose/rsshub && cd ~/docker/compose/rsshub # 创建 RSSHub compose 文件的存储文件夹
+mkdir -p ~/appdata/rsshub # 创建 RSSHub 数据的存储文件夹
+mkdir -p ~/compose/rsshub && cd ~/compose/rsshub # 创建 RSSHub Compose 文件的存储文件夹
+touch .env # 创建环境变量文件
 vim compose.yaml # 新建并编辑 compose 文件
 ~~~ # 分隔符，表示进入文本编辑界面
 # Ctrl+V 粘贴你修改后的 compose 文件
@@ -138,27 +169,29 @@ docker compose up -d # docker compose 部署服务
 
 ![成功部署RSSHUB](https://img.k1r.in/2024/05/picgo_79304257a317b95e2156b30fac627acd.png)
 
-其实到这一步已经成功自部署 RSSHub 了，至于配置反向代理使用域名访问这里（和后文）就不讲了，不是必需的，一是域名解析到国内云服务器需要备案（备案要等大概十来天），二是网上很多相关教程了，小白建议用 Caddy（配置简单，占用小，但没有图形化界面）/ Nginx Proxy Manger（docker 部署，占用较大，有 webui）。
+其实到这一步已经成功自部署 RSSHub 了，至于配置反向代理使用域名访问这里（和后文）就不讲了，不是必需的。
+
+一是域名解析到国内云服务器需要备案（备案要等大概十来天），二是网上很多相关教程了，小白建议用 Caddy（配置简单，占用小，但没有图形化界面）/ Nginx Proxy Manger（docker 部署，占用较大，有 webui）。
 
 > 2024-07-10 更新：[《使用 Caddy 和 acme.sh 实现反向代理》](../reserve-proxy-caddy-acmesh)
 >
 > 使用 acme.sh 定期申请泛域名 SSL 证书，配置 Caddy 进行反向代理，实现 HTTPS + 域名访问。
 
-如果你用了前文提到的 RSSHub Radar 插件，就可以在插件设置的“RSSHub 实例”那里填入 `http://<公网IP>:1200`。
+_如果你用了前文提到的 RSSHub Radar 插件，就可以在插件设置的“RSSHub 实例”那里填入 `http://<公网IP>:1200`。_
 
 #### WeWe RSS
 
 如果你去翻过 RSSHub 的路由文档，你会发现里面并没有**微信公众号**的相关路由，有也是第三方爬取后再使用，其中不少还是收费的。
 
-> **wewe-rss**: https://github.com/cooderl/wewe-rss
+> **WeWe RSS**: https://github.com/cooderl/wewe-rss
 >
 > 🤗更优雅的微信公众号订阅方式，支持私有化部署、微信公众号RSS生成（基于微信读书）v2.x
 
-这个服务一样可以用 docker compose 部署，和 RSSHub 一样，
+这个服务一样可以用 Docker Compose 部署，和 RSSHub 一样，
 
-首先，在**你自己的电脑**上，在 [wewe-rss 的项目仓库中找到 compose 文件](https://github.com/cooderl/wewe-rss/blob/main/docker-compose.sqlite.yml)，粘贴到文本编辑器中。
+首先，在**你自己的电脑**上，在 [WeWe RSS 的项目仓库中找到 Compose 文件](https://github.com/cooderl/wewe-rss/blob/main/docker-compose.sqlite.yml)，粘贴到文本编辑器中。
 
-下面是我采用的 compose 文件夹，**这里还有一些设置没用上，你可以在项目提供的 compose 文件看到相关设置的选项**。
+下面是我采用的 Compose 文件，**这里还有一些设置没用上，你可以在项目提供的 compose 文件看到相关设置的选项**。
 
 ```yaml
 services:
@@ -168,15 +201,22 @@ services:
       - 4000:4000
     environment:
       - DATABASE_TYPE=sqlite
-      - AUTH_CODE=123567 # 这里的密码可以改一下
+      - AUTH_CODE=1234567
+      - CRON_EXPRESSION=35 7,12,17,22 * * * # 定时更新订阅源
+      - PUID=1000
+      - PGID=1000
+      - UMASK=022
+      - FEED_MODE=fulltext # 开启提取全文内容功能
     volumes:
-      - ~/docker/data/wewerss/data:/app/data
+      - ~/appdata/wewerss:/app/data
+    restart: unless-stopped
 ```
 
 然后，在**你的服务器**上，在命令行中：
 
 ```shell
-mkdir -p ~/docker/compose/wewerss && cd ~/docker/compose/wewerss # 创建 wewe-rss compose 文件的存储文件夹
+mkdir -p ~/appdata/wewerss
+mkdir -p ~/compose/wewerss && cd ~/compose/wewerss # 创建 wewe-rss compose 文件的存储文件夹
 vim compose.yaml # 新建并编辑 compose 文件
 ~~~ # 分隔符，表示进入文本编辑界面
 # Ctrl+V 粘贴你修改后的 compose 文件
@@ -205,12 +245,12 @@ docker compose up -d # docker compose 部署服务
 
 其实 RSS 服务端在流程中不是必需的，但部署之后的好处：
 
-- 提供一个平台进行统一管理，客户端只需要支持相关 api 就可以实现同步（大多数都支持）；
+- 提供一个平台进行统一管理，客户端只需要支持相关 api 就可以实现同步（大多数都支持）。
 - 服务端会将从 RSS 获取的内容保存下来，换一个 RSS 阅读器还是原来的数据。
 
 **常见的自部署 RSS 服务端有 FreshRSS、Tiny Tiny RSS、Miniflux**，我用的是 FreshRSS，因为 FreshRSS 支持 SQLite 数据库，不用再运行一个数据库（数据库是真的挺占内存的）。
 
-还是用 docker compose 部署 FreshRSS，我用的不是官方的镜像，而是 LinuxServer 的镜像（我也推荐你之后**优先使用 LinuxServer 的镜像**，因为他们简化并统一配置）。
+还是用 Docker Compose 部署 FreshRSS，我用的不是官方的镜像，而是 LinuxServer 的镜像。我也推荐你之后**优先使用 LinuxServer 的镜像**，因为他们简化并统一配置。
 
 > **FreshRSS**: https://freshrss.org/
 >
@@ -228,7 +268,7 @@ services:
       - PGID=1000
       - TZ=Asia/Shanghai # 修改时区
     volumes:
-      - ~/docker/data/freshrss/config:/config
+      - ~/appdata/freshrss:/config
     ports:
       - 8080:80 # 这里不要用默认的80端口，最好换一个端口8080
     restart: unless-stopped
@@ -237,7 +277,8 @@ services:
 然后，在**你的服务器**上，在命令行中：
 
 ```shell
-mkdir -p ~/docker/compose/freshrss && cd ~/docker/compose/freshrss # 创建 FreshRSS compose 文件的存储文件夹
+mkdir -p ~/appdata/freshrss
+mkdir -p ~/compose/freshrss && cd ~/compose/freshrss # 创建 FreshRSS compose 文件的存储文件夹
 vim compose.yaml # 新建并编辑 compose 文件
 ~~~ # 分隔符，表示进入文本编辑界面
 # Ctrl+V 粘贴你修改后的 compose 文件
@@ -248,7 +289,7 @@ docker compose up -d # docker compose 部署服务
 
 最后，云服务器放行 8080 端口，在浏览器输入 `http://<公网IP>:8080` 访问到 FreshRSS 了，按照指示配置好后会到 FreshRSS 的首页。
 
-如果你用了前文提到的 RSSHub Radar 插件，就可以在插件设置的“快速订阅”-“FreshRSS”，勾选并填写 `http://<公网IP>:8080`，这样使用 RSSHub Radar 时可以一键添加到 FreshRSS。
+_如果你用了前文提到的 RSSHub Radar 插件，就可以在插件设置的“快速订阅”-“FreshRSS”，勾选并填写 `http://<公网IP>:8080`，这样使用 RSSHub Radar 时可以一键添加到 FreshRSS。_
 
 这里我们需要进行相关设置以便后续操作：
 
@@ -278,7 +319,7 @@ docker compose up -d # docker compose 部署服务
 
 这是我现在主要用的就是 ReadYou，一个仿 iOS 平台的 reeder 的安卓软件，样式设置还挺多的。
 
-[0.9.12](https://github.com/Ashinch/ReadYou/releases/tag/0.9.12) 这个版本貌似是 FreshRSS 社区帮忙支持了 FreshRSS。
+[0.9.12](https://github.com/Ashinch/ReadYou/releases/tag/0.9.12) 后的版本貌似是在 FreshRSS 社区帮忙下支持了 FreshRSS。
 
 **(2) Fluent Reader** - Android, Windows, iOS, macOS
 
@@ -294,7 +335,7 @@ Fluent UI 是微软的设计语言，所以还挺适合在 Windows 使用的，�
 >
 > NetNewsWire is a free and open source RSS reader for Mac, iPhone, and iPad
 
-因为我没用过，下面是 [V2EX 的推荐语](https://blog.v2ex.com/rss/)：
+macOS 和 iOS 下的免费 RSS 阅读器，我体验下来感觉很不错，就是界面还不支持中文。
 
 > 如果你使用的是 Apple 系统，那么我们推荐 NetNewsWire。这是一款设计优雅，同时所有 Swift 代码开源的 RSS 客户端：
 >
@@ -305,6 +346,8 @@ Fluent UI 是微软的设计语言，所以还挺适合在 Windows 使用的，�
 > NetNewsWire 的高性能让人印象深刻。即使有上万的未读条目，用起来也完全不卡。背后的支撑是 [RSDatabase](https://github.com/Ranchero-Software/RSDatabase) 项目。
 >
 > 同时 NetNewsWire 的开发者们还是新标准 [JSON Feed](https://jsonfeed.org/) 的发起者。
+>
+> —— [V2EX 的推荐语](https://blog.v2ex.com/rss/)
 
 **(4) Reeder** - iOS, macOS
 
@@ -334,8 +377,8 @@ Fluent UI 是微软的设计语言，所以还挺适合在 Windows 使用的，�
 
 Newsletter 也是构建信息流的一种方式，它是通过邮件订阅的，可能有一些网站只提供 Newsletter 订阅方式，这时我们可以使用一些公益服务将其转换为 RSS。
 
-- Notifier: https://notifier.in/
 - Kill the Newsletter!: https://kill-the-newsletter.com/
+- Notifier: https://notifier.in/
 
 **(4) 对 RSS 订阅源进行内容筛选**
 
