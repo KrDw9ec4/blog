@@ -1,7 +1,7 @@
 ---
 author: KrDw
 pubDatetime: 2024-05-08T14:00:29.000+08:00
-modDatetime: 2025-02-02T17:00:00.000+08:00
+modDatetime: 2025-02-23T13:12:23.000+08:00
 title: 打造自己的 RSS 信息流
 featured: true
 draft: false
@@ -10,18 +10,18 @@ tags:
   - rss
   - docker
   - PRACTICES
-description: "从 RSSHub 和 WeWeRSS 获取 RSS 订阅源链接，部分使用 rss-proxy 进行代理，使用 FreshRSS 作为 RSS 服务端，安卓使用 ReadYou 进行阅读。"
+description: "从 RSSHub 和 WeWeRSS 获取 RSS 订阅源链接，部分使用 rss-proxy 进行代理，使用 FreshRSS 作为 RSS 服务端，安卓使用 Capy Reader 进行阅读。"
 ---
 
 ### Table of Contents
 
 ### 前言
 
-对于 RSS 的介绍本文不赘述，你需要知道 RSS 是能将分散孤立的平台的信息聚合到一起，下面我将带你搭建一套流程实现 RSS 信息流，大致思路：**从 RSSHub 和 WeWeRSS 获取 RSS 订阅源链接，部分使用 rss-proxy 进行代理，使用 FreshRSS 作为 RSS 服务端，安卓使用 ReadYou 进行阅读。**
+对于 RSS 的介绍本文不赘述，你需要知道 RSS 是能将分散孤立的平台的信息聚合到一起，下面我将带你搭建一套流程实现 RSS 信息流，大致思路：**从 RSSHub 和 WeWeRSS 获取 RSS 订阅源链接，部分使用 rss-proxy 进行代理，使用 FreshRSS 作为 RSS 服务端，安卓使用 Capy Reader 进行阅读。**
 
 ![RSS流程图](https://img.k1r.in/2024/07/picgo_38b1d1ab5fdd204ec2b863260f96b05b.svg)
 
-下面这个表格是这一套流程**大致的空间和内存占用**，如果只是部署这一套流程，那么 1G 内存的服务器应该勉强够用了（未长期验证）。
+下面这个表格是这一套流程**大致的空间和内存占用**，实际运行时可能需要更多资源，推荐使用 **2GB 内存**服务器以获得稳定体验。
 
 | SERVICES | IMAGES                       | SIZE   | CONTAINERS           | MEMORY   |
 | -------- | ---------------------------- | ------ | -------------------- | -------- |
@@ -31,7 +31,7 @@ description: "从 RSSHub 和 WeWeRSS 获取 RSS 订阅源链接，部分使用 r
 | WeWe RSS | cooderl/wewe-rss-sqlite      | 331MB  | wewerss              | 56.02MiB |
 | FreshRSS | lscr.io/linuxserver/freshrss | 93.8MB | freshrss             | 44.25MiB |
 
-但后文我也会提到 RSSHub 和 WeWe RSS 其实可以部署到 Vercel 等云服务平台，FreshRSS 虽然只能在服务器部署，但一这不是必需的，二网上也有很多公益服务器（不推荐）。所以如果你愿意的话，这一套用不上服务器（
+~~但后文我也会提到 RSSHub 和 WeWe RSS 其实可以部署到 Vercel 等云服务平台，FreshRSS 虽然只能在服务器部署，但一这不是必需的，二网上也有很多公益服务器（不推荐）。所以如果你愿意的话，这一套用不上服务器（~~
 
 ### RSS 订阅源
 
@@ -317,9 +317,19 @@ _如果你用了前文提到的 RSSHub Radar 插件，就可以在插件设置�
 >
 > An Android RSS reader presented in Material You style.
 
-这是我现在主要用的就是 ReadYou，一个仿 iOS 平台的 reeder 的安卓软件，样式设置还挺多的。
+~~这是我现在主要用的就是 ReadYou~~，一个仿 iOS 平台的 reeder 的安卓软件，样式设置还挺多的。
 
 [0.9.12](https://github.com/Ashinch/ReadYou/releases/tag/0.9.12) 后的版本貌似是在 FreshRSS 社区帮忙下支持了 FreshRSS。
+
+**(1.1) Capy Reader** - Android
+
+> **Capy Reader**：https://github.com/jocmp/capyreader
+>
+> A smallish RSS reader with support for Feedbin, FreshRSS, and local feeds.
+
+目前安卓端换成这个阅读器了，设置虽然少，但默认也挺好，比起 Read You 好就好在同步速度快。
+
+不过 Read You 的同步问题挺玄学的，推荐你两个都试一试，毕竟建了 FreshRSS，换客户端就是重新登录的事情。
 
 **(2) Fluent Reader** - Android, Windows, iOS, macOS
 
@@ -380,6 +390,12 @@ Newsletter 也是构建信息流的一种方式，它是通过邮件订阅的，
 - Kill the Newsletter!: https://kill-the-newsletter.com/
 - Notifier: https://notifier.in/
 
+**(4) 稍后读 Wallabag**
+
+稍后读能够帮助实现「内容订阅」而非「网站订阅」，避免为偶然出现的优质内容被迫订阅整个网站（尤其对低质量更新频繁的站点）。
+
+我目前使用（部署）的稍后读服务是 Wallabag，一是因为它提供了 RSS 源以便于融入这一套体系，二是因为它生态比较完整，移动端有软件，桌面端有插件。
+
 **(4) 对 RSS 订阅源进行内容筛选**
 
 2024-05-14 才发现 RSSHub 可以通过[配置通用参数](https://docs.rsshub.app/zh/guide/parameters)进行筛选，支持正则表达式。
@@ -398,7 +414,7 @@ Newsletter 也是构建信息流的一种方式，它是通过邮件订阅的，
 
 下面文章对我写这篇博客有很大帮助，推荐你也阅读。
 
-- 2024-02-25 RSS 使用的最佳实践 RSSHub+FluentReader+FreshRSS：https://blog.cmyr.ltd/archives/499d4cee.html
 - 我有特别的 RSS 使用技巧：https://diygod.cc/ohmyrss
 - RSSHub Radar — 订阅一个 RSS 源不应该这么难：https://diygod.cc/rsshub-radar
 - 一个六岁开源项目的崩溃与新生：https://diygod.cc/6-year-of-rsshub
+- 2024-02-25 RSS 使用的最佳实践 RSSHub+FluentReader+FreshRSS：https://blog.cmyr.ltd/archives/499d4cee.html
