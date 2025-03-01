@@ -113,8 +113,8 @@ vim ~/.ssh/authorized_keys
 切换到**本地服务器**，尝试 SSH 连接到远程服务器，确认能**从本地服务器免密登录到远程服务器的 acme 用户**。
 
 ```bash
-# 请将 example.com 换成远程服务器的地址
-ssh acme@example.com
+# ⚠️ 注意将 1.1.1.1 换成你的远程服务器地址。
+ssh acme@1.1.1.1
 ```
 
 #### 免密重载 Caddy 服务
@@ -198,7 +198,7 @@ acme.sh --issue --dns dns_cf -d example.com -d '*.example.com'
 参照 acme.sh 项目的 Wiki - [deployhooks](https://github.com/acmesh-official/acme.sh/wiki/deployhooks#3-deploy-the-cert-to-remote-server-through-ssh-access)，可以通过 SSH 将证书部署到远程服务器。SSH 这个方法比较通用，但 Wiki 里也有其他特定场景的方法。
 
 ```bash
-# ⚠️ 注意将 1.1.1.1 换成你的地址。
+# ⚠️ 注意将 1.1.1.1 换成你的远程服务器地址。
 # export DEPLOY_SSH_CMD='ssh -p 8822'
 export DEPLOY_SSH_USER=acme
 export DEPLOY_SSH_SERVER="1.1.1.1 1.2.3.4"
