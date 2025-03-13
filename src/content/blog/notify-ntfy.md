@@ -1,7 +1,7 @@
 ---
 author: KrDw
 pubDatetime: 2025-01-20T14:50:00.000+08:00
-modDatetime: 2025-01-21T18:30:00.000+08:00
+modDatetime: 2025-03-13T10:48:44.000+08:00
 title: 使用 ntfy 推送通知
 featured: false
 draft: false
@@ -40,7 +40,7 @@ sudo mkdir -p /etc/apt/keyrings
 curl -fsSL https://archive.heckel.io/apt/pubkey.txt | sudo gpg --dearmor -o /etc/apt/keyrings/archive.heckel.io.gpg
 sudo apt install apt-transport-https
 sudo sh -c "echo 'deb [arch=amd64 signed-by=/etc/apt/keyrings/archive.heckel.io.gpg] https://archive.heckel.io/apt debian main' \
-    > /etc/apt/sources.list.d/archive.heckel.io.list"  
+    > /etc/apt/sources.list.d/archive.heckel.io.list"
 sudo apt update
 sudo apt install ntfy
 sudo systemctl enable ntfy
@@ -75,7 +75,7 @@ listen-http: "127.0.0.1:2586"
 
 **[消息缓存](https://docs.ntfy.sh/config/#message-cache)**
 
-ntfy 默认是在内存中缓存 12h 的消息，而且实例重启就丢失了（内存特性）。这里设置成在硬盘缓存，ntfy 会将消息存储在基于 SQLite 的缓存，我们设置 24*7=168 h 的持续时间。
+ntfy 默认是在内存中缓存 12h 的消息，而且实例重启就丢失了（内存特性）。这里设置成在硬盘缓存，ntfy 会将消息存储在基于 SQLite 的缓存，我们设置 24\*7=168 h 的持续时间。
 
 - `cache-file`：缓存文件地址 `/var/cache/ntfy/cache.db`。
 - `cache-duration`：消息在缓存中存储的持续时间 `168h`。
@@ -119,11 +119,11 @@ smtp-server-addr-prefix: "ntfy-"
 
 ⚠️ 注意把 example.com 改成你自己的域名。
 
-| 名称                | 类型 | 值                     | 备注                                  |
-| ------------------- | ---- | ---------------------- | ------------------------------------- |
-| ntfy.example.com    | A    | `公网 IPv4 地址`       | 对应 `base-url`，是访问 WebUI 的地址  |
+| 名称                | 类型 | 值                  | 备注                                  |
+| ------------------- | ---- | ------------------- | ------------------------------------- |
+| ntfy.example.com    | A    | `公网 IPv4 地址`    | 对应 `base-url`，是访问 WebUI 的地址  |
 | ntfy.example.com    | MX   | ntfy-mx.example.com | 对应 `smtp-server-domain`，是邮件地址 |
-| ntfy-mx.example.com | A    | `公网 IPv4 地址`       | 和上面的值对应。                      |
+| ntfy-mx.example.com | A    | `公网 IPv4 地址`    | 和上面的值对应。                      |
 
 其实没有必要添加第三条记录，将 MX 记录的值 `ntfy-mx.example.com` 改成 `ntfy.example.com` 就可以了。
 
@@ -216,22 +216,25 @@ curl \
 - URL：`https://ntfy.example.com`
 
 - Header：
+
   ```json
   {
-  	"Authorization": "Bearer tk_123456"
+    "Authorization": "Bearer tk_123456"
   }
   ```
 
 - Body：
   ```json
   {
-      "topic": "phil_alerts",
-      "title": "Unauthorized access detected",
-      "message": "Remote access to phils-laptop detected. Act right away."
+    "topic": "phil_alerts",
+    "title": "Unauthorized access detected",
+    "message": "Remote access to phils-laptop detected. Act right away."
   }
   ```
 
 需要注意的是，**URL 不能带上主题，即只能是 `https://ntfy.example.com`** ，不能是 `https://ntfy.example.com/phil_alerts`。
+
+另外，有些服务的 Webhook 只支持接受一行链接，且发送的消息是 JSON 文本，ntfy 也能将其转换成可读的消息，参见文末 [Waline](#waline---使用模板) 示例。
 
 #### (3) 通过邮件推送
 
@@ -288,3 +291,46 @@ export NTFY_TOPIC="acmesh?auth=QmFza..."
 acme.sh --set-notify --notify-hook ntfy
 ```
 
+#### waline - 使用模板
+
+我博客的评论用的 Waline，它的 Webhook 推送只有一行简单的链接，如果不加以处理的话，推送的消息就是 JSON 文本，可读性很差（下面示例我省略了很多东西）。
+
+```json
+{
+  "type": "new_comment",
+  "data": {
+    "comment": {
+      "link": "https://k1r.in",
+      "mail": "mail@k1r.in",
+      "nick": "KrDw",
+      "url": "/posts/build-your-rss-flow/",
+      "comment": "**2025-02-02 17:00:00 更新**...",
+      "rawComment": "**2025-02-02 17:00:00 更新**..."
+    }
+  }
+}
+```
+
+参照官方文档 - [Message templating](https://docs.ntfy.sh/publish/#message-templating)，我们可以使用 GO 模板对 JSON 数据格式化成可读的推送，需要设置 `?template=yes` 参数。
+
+我这里就直接给出我的模板了，最好使用 [urlencoder](https://www.urlencoder.org/) 进行编码。
+
+```
+Title: {{.data.comment.url}} 有新评论了
+Title-Encoded: %7B%7B.data.comment.url%7D%7D%20%E6%9C%89%E6%96%B0%E8%AF%84%E8%AE%BA%E4%BA%86
+Message:
+读者 {{.data.comment.nick}} 在 {{.data.comment.createdAt}} 评论：\n\n{{.data.comment.rawComment}}
+Message-Encoded:
+%E8%AF%BB%E8%80%85%20%7B%7B.data.comment.nick%7D%7D%20%E5%9C%A8%20%7B%7B.data.comment.createdAt%7D%7D%20%E8%AF%84%E8%AE%BA%EF%BC%9A%5Cn%5Cn%7B%7B.data.comment.rawComment%7D%7D
+```
+
+配合前面 [acme.sh](#acmesh) 示例中提到的身份验证查询参数 `auth`，最终得到如下 Webhook 链接（为了你的阅读体验我使用了换行，请在实际使用中不要换行）：
+
+```
+https://ntfy.example.com/waline
+?auth=QmFza...
+&markdown=yes
+&template=yes
+&title=%7B%7B.data.comment.url%7D%7D%20%E6%9C%89%E6%96%B0%E8%AF%84%E8%AE%BA%E4%BA%86
+&message=%E8%AF%BB%E8%80%85%20%7B%7B.data.comment.nick%7D%7D%20%E5%9C%A8%20%7B%7B.data.comment.createdAt%7D%7D%20%E8%AF%84%E8%AE%BA%EF%BC%9A%5Cn%5Cn%7B%7B.data.comment.rawComment%7D%7D
+```
